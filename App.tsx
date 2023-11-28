@@ -1,20 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { PromisesProvider } from './src/contexts/promises.context';
+import { View } from 'react-native';
+import { globalStyles } from './src/styles';
+import Toast from 'react-native-toast-message';
+import { ScreenManager } from './src/components/layout/ScreenManager';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <PromisesProvider>
+      <View style={globalStyles.app}>
+        <ScreenManager />
+        <Toast />
+      </View>
       <StatusBar style="auto" />
-    </View>
+    </PromisesProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
