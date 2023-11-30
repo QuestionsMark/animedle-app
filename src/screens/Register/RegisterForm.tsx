@@ -1,10 +1,11 @@
 import { Formik } from "formik";
 import { usePromises } from "../../contexts/promises.context";
-import { useUser } from "../../contexts/user.context";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { RegisterState } from "../../validation/register.validation";
 import { globalStyles } from "../../styles";
 import { RegisterFormContent } from "./RegisterFormContent";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { TabList } from "../../components/layout/ScreenManager";
 
 export const defaultLoginState: RegisterState = {
     confirmPassword: '',
@@ -15,7 +16,7 @@ export const defaultLoginState: RegisterState = {
 
 export const RegisterForm = () => {
     const { setError, setLoading, setMessage } = usePromises();
-    const { setUser } = useUser();
+    const navigation = useNavigation<NavigationProp<TabList>>();
 
     const handleSubmit = async (state: RegisterState) => {
         setLoading(true);
@@ -26,6 +27,7 @@ export const RegisterForm = () => {
             setTimeout(() => {
                 if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
                 setMessage({ text1: response.results });
+                navigation.navigate('Login');
             });
         }, delayTime);
     };
