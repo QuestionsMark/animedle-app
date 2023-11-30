@@ -1,0 +1,41 @@
+import { Text, View } from "react-native";
+import { Button } from "react-native-paper";
+import { TextInput } from "../../components/common/TextInput";
+import { FormikProps } from "formik";
+import { PasswordInput } from "../../components/common/PasswordInput";
+import { PRIMARY_COLOR, loginStyles } from "../../styles";
+
+interface Props {
+    formikProps: FormikProps<{
+        email: string;
+        password: string;
+    }>;
+}
+
+export const LoginFormContent = ({ formikProps }: Props) => {
+    return (
+        <View style={loginStyles.form}>
+            <Text style={loginStyles.title}>Login</Text>
+            <View style={loginStyles.formContent}>
+                <TextInput
+                    onChangeText={formikProps.handleChange('email')}
+                    placeholder="Email"
+                    value={formikProps.values.email}
+                />
+                <PasswordInput
+                    onChangeText={formikProps.handleChange('password')}
+                    placeholder="Password"
+                    value={formikProps.values.password}
+                />
+                <Button
+                    onPress={() => formikProps.handleSubmit()}
+                    mode="contained"
+                    buttonColor={PRIMARY_COLOR}
+                    style={loginStyles.submit}
+                >
+                    Start
+                </Button>
+            </View>
+        </View>
+    );
+};

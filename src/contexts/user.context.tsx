@@ -1,0 +1,56 @@
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import * as SecureStore from 'expo-secure-store';
+import { Auth, User } from "../types";
+import { fetchTool, minimalDelayFunction } from "../utils/api.util";
+import { usePromises } from "./promises.context";
+
+interface UserContextValue {
+    user: User.ContextValue | null;
+    setUser: Dispatch<SetStateAction<User.ContextValue | null>>;
+}
+
+interface Props {
+    children: ReactNode;
+}
+
+const UserContext = createContext<UserContextValue>(null!);
+
+export const useUser = () => useContext(UserContext);
+
+export const useUserInfo = () => {
+    const { user } = useContext(UserContext);
+    return user as User.ContextValue;
+};
+
+export const UserProvider = ({ children }: Props) => {
+    const { setLoading, setError } = usePromises();
+
+    const [user, setUser] = useState<User.ContextValue | null>(null);
+
+    useEffect(() => {
+        if (user !== null) return;
+        (async () => {
+            setLoading(true);
+            const { delayTime, response } = await minimalDelayFunction<User.ContextValue>(() => fetchTool('auth/is-logged'));
+            setTimeout(() => {
+                setLoading(false);
+                if (!response.status) {
+                    SecureStore.deleteItemAsync(Auth.SecureStoreKey.Auth);
+                    setUser(null);
+                    setError({ text1: 'Authorization Error', text2: 'Session has expired.' });
+                    return;
+                };
+                setUser(response.results);
+            }, delayTime);
+        })()
+    }, []);
+
+    return (
+        <UserContext.Provider value={{
+            user,
+            setUser,
+        }}>
+            {children}
+        </UserContext.Provider>
+    );
+};

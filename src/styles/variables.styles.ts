@@ -1,0 +1,1 @@
+export const PRIMARY_COLOR = '#564875'; // rgb(86, 72, 117)
