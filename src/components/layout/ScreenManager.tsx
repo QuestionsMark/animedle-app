@@ -10,6 +10,8 @@ import { Profile } from "../../screens/Profile/Profile";
 import { Settings } from "../../screens/Settings/Settings";
 import { Login } from "../../screens/Login/Login";
 import { Register } from "../../screens/Register/Register";
+import { AnimedleProvider } from "../../contexts/animedle.context";
+import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
 
 export type TabList = {
     Animedle: undefined;
@@ -35,7 +37,7 @@ const loginTabArr: NavTab[] = [
         name: 'Animedle',
         label: 'Quiz',
         icon: (color: string) => <MaterialCommunityIcons name="sword" size={26} color={color} />,
-        component: Animedle,
+        component: AnimedleScreen,
         tabBarColor: '#564875',
     },
     {

@@ -7,7 +7,7 @@ import { Auth } from "../../types";
 
 import * as SecureStore from 'expo-secure-store';
 import { LoginFormContent } from "./LoginFormContent";
-import { globalStyles } from "../../styles";
+import { componentsStyles } from "../../styles";
 
 export const defaultLoginState: LoginState = {
     email: '',
@@ -36,7 +36,7 @@ export const LoginForm = () => {
         <Formik
             initialValues={defaultLoginState}
             onSubmit={handleSubmit}
-            style={globalStyles.card}
+            style={componentsStyles.card}
         >
             {(props) => <LoginFormContent formikProps={props} />}
         </Formik>

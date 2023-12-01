@@ -15,17 +15,8 @@ export const loginStyles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         paddingHorizontal: 15,
-        paddingBottom: 15,
-        borderRadius: 16,
-        backgroundColor: '#fff',
-    },
-    title: {
-        ...globalStyles.shadow,
-        ...globalStyles.titleFont,
-        marginTop: -10,
-        paddingHorizontal: 30,
         paddingVertical: 15,
-        borderRadius: 30,
+        borderRadius: 16,
         backgroundColor: '#fff',
     },
     formContent: {

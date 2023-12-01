@@ -9,11 +9,6 @@ export const globalStyles = StyleSheet.create({
     },
 
     // Common
-    card: {
-        borderWidth: 2,
-        borderColor: 'rgba(86, 72, 117, 0.2)',
-        borderRadius: 16,
-    },
     shadow: {
         shadowColor: "#000",
         shadowOffset: {
