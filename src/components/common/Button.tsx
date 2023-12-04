@@ -1,16 +1,29 @@
 import { ReactNode } from "react";
-import { Pressable } from "react-native";
+import { Button as RNPButton } from "react-native-paper";
+import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
+import { PRIMARY_LIGHT_COLOR } from "../../styles";
 
 interface Props {
     onPress(): void;
-    children: ReactNode;
+    children?: ReactNode;
     style?: any;
+    icon?: IconSource;
+    textColor?: string;
+    buttonColor?: string;
+    disabled?: boolean;
 }
 
-export const Button = ({ children, onPress, style }: Props) => {
+export const Button = ({ onPress, buttonColor, children, disabled, icon, style, textColor }: Props) => {
     return (
-        <Pressable style={style} onPress={onPress}>
+        <RNPButton
+            onPress={onPress}
+            textColor={textColor || "#fff"}
+            buttonColor={buttonColor || PRIMARY_LIGHT_COLOR}
+            icon={icon}
+            style={style}
+            disabled={disabled}
+        >
             {children}
-        </Pressable>
+        </RNPButton>
     );
 };

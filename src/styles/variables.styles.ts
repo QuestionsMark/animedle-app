@@ -1,1 +1,6 @@
 export const PRIMARY_COLOR = '#564875'; // rgb(86, 72, 117)
+export const PRIMARY_LIGHT_COLOR = '#796E92'; // rgb(121, 110, 146)
+export const SECONDARY_COLOR = '#F08C68'; // rgb(240, 140, 104)
+export const SUCCESS_COLOR = '#5cb85c'; // rgb(92, 184, 92)
+export const WARN_COLOR = '#FF8383'; // rgb(255, 131, 131)
+export const INFO_COLOR = '#fac519'; // rgb(250, 197, 25)

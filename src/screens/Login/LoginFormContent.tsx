@@ -22,11 +22,13 @@ export const LoginFormContent = ({ formikProps }: Props) => {
                     onChangeText={formikProps.handleChange('email')}
                     placeholder="Email"
                     value={formikProps.values.email}
+                    style={loginStyles.input}
                 />
                 <PasswordInput
                     onChangeText={formikProps.handleChange('password')}
                     placeholder="Password"
                     value={formikProps.values.password}
+                    style={loginStyles.input}
                 />
                 <Button
                     onPress={() => formikProps.handleSubmit()}

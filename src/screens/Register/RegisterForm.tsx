@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import { usePromises } from "../../contexts/promises.context";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { RegisterState } from "../../validation/register.validation";
-import { globalStyles } from "../../styles";
+import { componentsStyles } from "../../styles";
 import { RegisterFormContent } from "./RegisterFormContent";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TabList } from "../../components/layout/ScreenManager";
@@ -36,7 +36,7 @@ export const RegisterForm = () => {
         <Formik
             initialValues={defaultLoginState}
             onSubmit={handleSubmit}
-            style={globalStyles.card}
+            style={componentsStyles.card}
         >
             {(props) => <RegisterFormContent formikProps={props} />}
         </Formik>

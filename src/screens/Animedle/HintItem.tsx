@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 import { Button } from "../../components/common/Button";
 import { Animedle } from "../../types";
-import { animedleStyles } from "../../styles";
+import { SECONDARY_COLOR, animedleStyles } from "../../styles";
 import { fetchTool } from "../../utils/api.util";
 import { usePromises } from "../../contexts/promises.context";
 import { useAnimedle } from "../../contexts/animedle.context";
@@ -21,8 +21,13 @@ export const HintItem = ({ item }: Props) => {
     };
 
     return (
-        <Button onPress={handlePress}>
-            <Text style={animedleStyles.freeHintItem}>{item}</Text>
+        <Button
+            onPress={handlePress}
+            buttonColor={SECONDARY_COLOR}
+            textColor="#fff"
+            style={animedleStyles.freeHintItem}
+        >
+            <Text style={animedleStyles.freeHintItemText}>{item}</Text>
         </Button>
     );
 };

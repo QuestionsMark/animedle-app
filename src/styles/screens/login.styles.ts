@@ -24,6 +24,10 @@ export const loginStyles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
     },
+    input: {
+        flex: undefined,
+        width: '100%',
+    },
     submit: {
         paddingHorizontal: 20,
         paddingVertical: 6,

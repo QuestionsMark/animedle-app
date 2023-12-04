@@ -20,6 +20,17 @@ export const globalStyles = StyleSheet.create({
 
         elevation: 7,
     },
+    maxShadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+
+        elevation: 12,
+    },
     titleFont: {
         color: PRIMARY_COLOR,
         fontSize: 16,
