@@ -4,14 +4,12 @@ import { Entypo, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icon
 
 import { useUser } from "../../contexts/user.context";
 
-import { Animedle } from "../../screens/Animedle/Animedle";
 import { History } from "../../screens/History/History";
-import { Profile } from "../../screens/Profile/Profile";
 import { Settings } from "../../screens/Settings/Settings";
 import { Login } from "../../screens/Login/Login";
 import { Register } from "../../screens/Register/Register";
-import { AnimedleProvider } from "../../contexts/animedle.context";
 import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
+import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
 
 export type TabList = {
     Animedle: undefined;
@@ -44,7 +42,7 @@ const loginTabArr: NavTab[] = [
         name: 'Profile',
         label: 'Profile',
         icon: (color: string) => <MaterialCommunityIcons name="face-man-profile" size={26} color={color} />,
-        component: Profile,
+        component: ProfileScreen,
         tabBarColor: '#61547E',
     },
     {

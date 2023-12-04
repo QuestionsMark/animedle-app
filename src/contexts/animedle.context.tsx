@@ -22,7 +22,7 @@ export const useAnimedleInfo = () => {
 };
 
 export const AnimedleProvider = ({ children }: Props) => {
-    const { setLoading, setError } = usePromises();
+    const { setError } = usePromises();
 
     const [animedle, setAnimedle] = useState<Animedle.ContextValue | null>(null);
 

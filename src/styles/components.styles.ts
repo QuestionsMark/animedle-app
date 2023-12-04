@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { globalStyles } from "./global.styles";
+import { PRIMARY_LIGHT_COLOR } from "./variables.styles";
 
 export const componentsStyles = StyleSheet.create({
     //Loader
@@ -65,5 +66,16 @@ export const componentsStyles = StyleSheet.create({
         paddingVertical: 15,
         borderRadius: 30,
         backgroundColor: '#fff',
+    },
+
+    // Icon button
+    iconButton: {
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 100,
+        backgroundColor: PRIMARY_LIGHT_COLOR,
+        color: '#fff',
     },
 });
