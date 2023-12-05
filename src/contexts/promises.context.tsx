@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import Toast from "react-native-toast-message";
 
-import { Loader } from "../components/common/Loader";
+import { hideLoader } from "../animations/loader.animation";
+import { Loader } from "../screens/Loaders/Loader";
 
 interface Props {
     children: ReactNode;
@@ -21,6 +22,8 @@ interface PromisesContextValue {
     setError: (error: ToastValue | null) => void;
     setMessage: (message: ToastValue | null) => void;
     setInfo: (info: ToastValue | null) => void;
+    endLoading(): void;
+    startLoading(): void;
 }
 
 const defaultPromisesContextValue: PromisesContextValue = {
@@ -32,6 +35,8 @@ const defaultPromisesContextValue: PromisesContextValue = {
     setInfo: undefined!,
     setLoading: undefined!,
     setMessage: undefined!,
+    endLoading: undefined!,
+    startLoading: undefined!,
 };
 
 export const PromisesContext = createContext<PromisesContextValue>(defaultPromisesContextValue);
@@ -43,6 +48,17 @@ export const PromisesProvider = ({ children }: Props) => {
     const [error, setError] = useState<ToastValue | null>(null);
     const [info, setInfo] = useState<ToastValue | null>(null);
     const [message, setMessage] = useState<ToastValue | null>(null);
+
+    const endLoading = () => {
+        hideLoader();
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    };
+
+    const startLoading = () => {
+        setLoading(true);
+    };
 
     useEffect(() => {
         if (error && !loading) Toast.show({ type: 'error', text1: error.text1, text2: error.text2 || '' });
@@ -63,6 +79,8 @@ export const PromisesProvider = ({ children }: Props) => {
             setInfo,
             setLoading,
             setMessage,
+            endLoading,
+            startLoading,
         }}>
             {children}
             {loading && <Loader />}

@@ -9,3 +9,5 @@ export * from './components/form.styles';
 export * from './screens/login.styles';
 export * from './screens/animedle.styles';
 export * from './screens/profile.styles';
+export * from './screens/loader.styles';
+export * from './screens/history.styles';

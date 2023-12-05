@@ -1,4 +1,3 @@
-import { Loader } from "../../components/common/Loader";
 import { AnimedleProvider, useAnimedle } from "../../contexts/animedle.context";
 import { Animedle } from "./Animedle";
 
@@ -15,5 +14,5 @@ AnimedleScreen.Guard = () => {
 
     // Add error handling TODO
 
-    return (<>{animedle ? <Animedle /> : <Loader />}</>);
+    return animedle && <Animedle />;
 };

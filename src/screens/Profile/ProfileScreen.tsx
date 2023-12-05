@@ -1,4 +1,3 @@
-import { Loader } from "../../components/common/Loader";
 import { ProfileProvider, useProfile } from "../../contexts/profile.context";
 import { Profile } from "./Profile";
 
@@ -15,5 +14,5 @@ ProfileScreen.Guard = () => {
 
     // Add error handling TODO
 
-    return (<>{profile ? <Profile /> : <Loader />}</>);
+    return profile && <Profile />;
 };

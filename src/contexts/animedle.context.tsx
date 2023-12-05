@@ -22,15 +22,17 @@ export const useAnimedleInfo = () => {
 };
 
 export const AnimedleProvider = ({ children }: Props) => {
-    const { setError } = usePromises();
+    const { setError, endLoading, startLoading } = usePromises();
 
     const [animedle, setAnimedle] = useState<Animedle.ContextValue | null>(null);
 
     useEffect(() => {
         if (animedle !== null) return;
         (async () => {
+            startLoading();
             const { delayTime, response } = await minimalDelayFunction<Animedle.ContextValue>(() => fetchTool('animedle'));
             setTimeout(() => {
+                endLoading();
                 if (!response.status) {
                     setAnimedle(null);
                     setError({ text1: 'Fetch Failed!', text2: response.message });

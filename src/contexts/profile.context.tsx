@@ -22,15 +22,17 @@ export const useProfileInfo = () => {
 };
 
 export const ProfileProvider = ({ children }: Props) => {
-    const { setError } = usePromises();
+    const { setError, endLoading, startLoading } = usePromises();
 
     const [profile, setProfile] = useState<Profile.ContextValue | null>(null);
 
     useEffect(() => {
         if (profile !== null) return;
         (async () => {
+            startLoading();
             const { delayTime, response } = await minimalDelayFunction<Profile.ContextValue>(() => fetchTool('profile'));
             setTimeout(() => {
+                endLoading();
                 if (!response.status) {
                     setProfile(null);
                     setError({ text1: 'Fetch Failed!', text2: response.message });
