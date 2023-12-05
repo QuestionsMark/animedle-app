@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { globalStyles } from "./global.styles";
-import { PRIMARY_LIGHT_COLOR } from "./variables.styles";
+import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "./variables.styles";
 
 export const componentsStyles = StyleSheet.create({
     // ScreenHeader
@@ -83,5 +83,36 @@ export const componentsStyles = StyleSheet.create({
     logo: {
         width: 140,
         height: 140,
+    },
+
+    // Autocomplete
+    autocomplete: {
+        position: 'relative',
+    },
+    autocompletionList: {
+        position: 'absolute',
+        top: '100%',
+        left: 0,
+        right: 0,
+        backgroundColor: '#fff',
+        borderWidth: 2,
+        borderColor: 'rgba(86, 72, 117, 0.2)',
+        borderRadius: 16,
+    },
+    autocompletionItem: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 50,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderBottomColor: 'rgba(86, 72, 117, 0.2)',
+        borderBottomWidth: 2,
+    },
+    autocompletionItemValue: {
+        color: PRIMARY_COLOR,
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '600',
+
     },
 });

@@ -16,12 +16,21 @@ export const animedleStyles = StyleSheet.create({
 
     // Gues form
     guesForm: {
+        position: 'relative',
         ...componentsStyles.card,
+        zIndex: 1,
     },
     guesFormContent: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 15,
+    },
+    guesFormAutocompletion: {
+        flex: 1,
+    },
+    guesFormAutocompletionInput: {
+        position: 'relative',
+        zIndex: 1,
     },
     guesFormSubmit: {
         paddingVertical: 7,
