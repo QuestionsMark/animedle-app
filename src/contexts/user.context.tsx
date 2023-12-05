@@ -23,7 +23,7 @@ export const useUserInfo = () => {
 };
 
 export const UserProvider = ({ children }: Props) => {
-    const { setError, endLoading, startLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const [user, setUser] = useState<User.ContextValue | null>(null);
 
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }: Props) => {
                 if (!response.status) {
                     SecureStore.deleteItemAsync(Auth.SecureStoreKey.Auth);
                     setUser(null);
-                    setError({ text1: 'Authorization Error', text2: 'Session has expired.' });
+                    setToast({ type: 'error', text1: 'Authorization Error', text2: 'Session has expired.' });
                     return;
                 };
                 setUser(response.results);

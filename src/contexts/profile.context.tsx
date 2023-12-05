@@ -22,7 +22,7 @@ export const useProfileInfo = () => {
 };
 
 export const ProfileProvider = ({ children }: Props) => {
-    const { setError, endLoading, startLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const [profile, setProfile] = useState<Profile.ContextValue | null>(null);
 
@@ -35,7 +35,7 @@ export const ProfileProvider = ({ children }: Props) => {
                 endLoading();
                 if (!response.status) {
                     setProfile(null);
-                    setError({ text1: 'Fetch Failed!', text2: response.message });
+                    setToast({ type: 'error', text1: 'Fetch Failed!', text2: response.message });
                     return;
                 };
                 setProfile(response.results);

@@ -22,7 +22,7 @@ export const useAnimedleInfo = () => {
 };
 
 export const AnimedleProvider = ({ children }: Props) => {
-    const { setError, endLoading, startLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const [animedle, setAnimedle] = useState<Animedle.ContextValue | null>(null);
 
@@ -35,7 +35,7 @@ export const AnimedleProvider = ({ children }: Props) => {
                 endLoading();
                 if (!response.status) {
                     setAnimedle(null);
-                    setError({ text1: 'Fetch Failed!', text2: response.message });
+                    setToast({ type: 'error', text1: 'Fetch Failed!', text2: response.message });
                     return;
                 };
                 setAnimedle(response.results);

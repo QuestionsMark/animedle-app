@@ -6,6 +6,7 @@ import { componentsStyles } from "../../styles";
 import { RegisterFormContent } from "./RegisterFormContent";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TabList } from "../../components/layout/ScreenManager";
+import { Keyboard } from "react-native";
 
 export const defaultLoginState: RegisterState = {
     confirmPassword: '',
@@ -15,20 +16,18 @@ export const defaultLoginState: RegisterState = {
 };
 
 export const RegisterForm = () => {
-    const { endLoading, setError, setMessage, startLoading } = usePromises();
+    const { endLoading, startLoading, setToast } = usePromises();
     const navigation = useNavigation<NavigationProp<TabList>>();
 
     const handleSubmit = async (state: RegisterState) => {
         startLoading();
         const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'POST', state));
-
         setTimeout(() => {
+            Keyboard.dismiss();
             endLoading();
-            setTimeout(() => {
-                if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
-                setMessage({ text1: response.results });
-                navigation.navigate('Login');
-            });
+            if (!response.status) return setToast({ type: 'error', text1: 'Authorization Error!', text2: response.message });
+            setToast({ type: 'success', text1: response.results });
+            navigation.navigate('Login');
         }, delayTime);
     };
 

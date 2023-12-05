@@ -22,7 +22,7 @@ export const useHistoryInfo = () => {
 };
 
 export const HistoryProvider = ({ children }: Props) => {
-    const { setError, endLoading, startLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const [history, setHistory] = useState<History.ContextValue | null>(null);
 
@@ -35,7 +35,7 @@ export const HistoryProvider = ({ children }: Props) => {
                 endLoading();
                 if (!response.status) {
                     setHistory(null);
-                    setError({ text1: 'Fetch Failed!', text2: response.message });
+                    setToast({ type: 'error', text1: 'Fetch Failed!', text2: response.message });
                     return;
                 };
                 setHistory(response.results);

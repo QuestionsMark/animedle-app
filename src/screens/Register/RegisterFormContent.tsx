@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { PRIMARY_COLOR, loginStyles } from "../../styles";
 import { FormikProps } from "formik";
 import { TextInput } from "../../components/common/TextInput";

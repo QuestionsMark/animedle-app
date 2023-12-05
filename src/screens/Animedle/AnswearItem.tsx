@@ -26,7 +26,7 @@ export const AnswearItem = ({ item }: Props) => {
     return (
         <View style={[animedleStyles.guesContentItemAnswear, getCorrectnessStyle()]}>
             <Text style={animedleStyles.guesContentItemAnswearText}>
-                {item.guesAnswear}
+                {guesAnswear}
             </Text>
         </View>
     );

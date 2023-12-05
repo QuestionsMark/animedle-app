@@ -14,22 +14,21 @@ interface Props {
 
 export const GenerateSkinPopup = ({ profileContext, setProfileContext }: Props) => {
     const { premiumCoins } = profileContext;
-    const { endLoading, setError, setInfo, startLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const handleSubmit = async (close: () => void) => {
         startLoading();
         const { delayTime, response } = await minimalDelayFunction<Profile.ContextValue>(() => fetchTool('user/avatar', 'POST'));
-
-        setTimeout(async () => {
+        setTimeout(() => {
             endLoading();
-            if (!response.status) return setError({ text1: 'Fetch failed!', text2: response.message });
+            if (!response.status) return setToast({ type: 'error', text1: 'Fetch failed!', text2: response.message });
             setProfileContext(response.results);
             close();
         }, delayTime);
     };
 
     const handleCoinsBuy = () => {
-        setInfo({ text1: 'Info', text2: 'Feature in development.' });
+        setToast({ type: 'info', text1: 'Info', text2: 'Feature in development.' });
     };
 
     return (

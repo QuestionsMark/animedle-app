@@ -16,20 +16,18 @@ export const defaultLoginState: LoginState = {
 };
 
 export const LoginForm = () => {
-    const { setError, endLoading, startLoading, } = usePromises();
+    const { endLoading, startLoading, setToast } = usePromises();
     const { setUser } = useUser();
 
     const handleSubmit = async (values: LoginState) => {
         startLoading();
         const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', values));
-        setTimeout(() => {
+        setTimeout(async () => {
             Keyboard.dismiss();
             endLoading();
-            setTimeout(async () => {
-                if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
-                await SecureStore.setItemAsync(Auth.SecureStoreKey.Auth, response.results.token);
-                setUser(response.results.user);
-            });
+            if (!response.status) return setToast({ type: 'error', text1: 'Authorization Error!', text2: response.message });
+            await SecureStore.setItemAsync(Auth.SecureStoreKey.Auth, response.results.token);
+            setUser(response.results.user);
         }, delayTime);
     };
 

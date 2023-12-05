@@ -13,23 +13,20 @@ const defaultGuesState: GuesState = {
 };
 
 export const GuesForm = () => {
-    const { setError, setLoading } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
     const { setAnimedle } = useAnimedle();
 
     const handleSubmit = async (values: GuesState, { resetForm }: FormikHelpers<{ title: string; }>) => {
         if (!values.title) return;
 
-        setLoading(true);
+        startLoading();
         const { delayTime, response } = await minimalDelayFunction<Animedle.ContextValue>(() => fetchTool('user/gues', 'POST', values));
-
-        setTimeout(() => {
-            setLoading(false);
-            setTimeout(async () => {
-                if (!response.status) return setError({ text1: 'Fetch Failed!', text2: response.message });
-                setAnimedle(response.results);
-                resetForm();
-                Keyboard.dismiss();
-            });
+        setTimeout(async () => {
+            endLoading();
+            if (!response.status) return setToast({ type: 'error', text1: 'Fetch Failed!', text2: response.message });
+            setAnimedle(response.results);
+            resetForm();
+            Keyboard.dismiss();
         }, delayTime);
     };
 

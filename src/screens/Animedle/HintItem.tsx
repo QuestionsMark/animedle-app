@@ -11,12 +11,12 @@ interface Props {
 }
 
 export const HintItem = ({ item }: Props) => {
-    const { setError } = usePromises();
+    const { setToast } = usePromises();
     const { setAnimedle } = useAnimedle();
 
     const handlePress = async () => {
         const response = await fetchTool<Animedle.ContextValue>(`user/hint`, 'PATCH', { hint: item });
-        if (!response.status) return setError({ text1: 'Authorization Error', text2: 'Session has expired.' });
+        if (!response.status) return setToast({ type: 'error', text1: 'Fetch failed!', text2: response.message });
         setAnimedle(response.results);
     };
 
