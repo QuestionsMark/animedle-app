@@ -4,7 +4,7 @@ import { Animedle } from "../../types";
 import { SECONDARY_COLOR, animedleStyles } from "../../styles";
 import { fetchTool } from "../../utils/api.util";
 import { usePromises } from "../../contexts/promises.context";
-import { useAnimedle } from "../../contexts/animedle.context";
+import { useAnimedle, useAnimedleInfo } from "../../contexts/animedle.context";
 
 interface Props {
     item: Animedle.HintType;
@@ -13,6 +13,7 @@ interface Props {
 export const HintItem = ({ item }: Props) => {
     const { setToast } = usePromises();
     const { setAnimedle } = useAnimedle();
+    const { isFinished } = useAnimedleInfo();
 
     const handlePress = async () => {
         const response = await fetchTool<Animedle.ContextValue>(`user/hint`, 'PATCH', { hint: item });
@@ -26,6 +27,7 @@ export const HintItem = ({ item }: Props) => {
             buttonColor={SECONDARY_COLOR}
             textColor="#fff"
             style={animedleStyles.freeHintItem}
+            disabled={isFinished}
         >
             <Text style={animedleStyles.freeHintItemText}>{item}</Text>
         </Button>
