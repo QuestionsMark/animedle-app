@@ -5,6 +5,7 @@ import { FormikProps } from "formik";
 import { PasswordInput } from "../../components/common/PasswordInput";
 import { PRIMARY_COLOR, loginStyles } from "../../styles";
 import { Title } from "../../components/common/Title";
+import { Logo } from "../../components/common/Logo";
 
 interface Props {
     formikProps: FormikProps<{
@@ -17,6 +18,7 @@ export const LoginFormContent = ({ formikProps }: Props) => {
     return (
         <View style={loginStyles.form}>
             <Title title="Login" />
+            <Logo />
             <View style={loginStyles.formContent}>
                 <TextInput
                     onChangeText={formikProps.handleChange('email')}

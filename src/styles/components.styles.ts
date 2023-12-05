@@ -78,4 +78,10 @@ export const componentsStyles = StyleSheet.create({
         backgroundColor: PRIMARY_LIGHT_COLOR,
         color: '#fff',
     },
+
+    // Logo
+    logo: {
+        width: 140,
+        height: 140,
+    },
 });
