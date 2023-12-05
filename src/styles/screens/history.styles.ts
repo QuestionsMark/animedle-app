@@ -29,12 +29,12 @@ export const historyStyles = StyleSheet.create({
         fontWeight: '600',
     },
     itemStats: {
-        gap: 10,
+        gap: 4,
         width: '100%',
     },
     itemStat: {
         flexDirection: 'row',
-        gap: 10,
+        gap: 6,
         alignItems: 'center',
         paddingVertical: 3,
         borderBottomWidth: 1,
@@ -42,12 +42,12 @@ export const historyStyles = StyleSheet.create({
     },
     itemStatTitle: {
         color: PRIMARY_COLOR,
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: '600',
     },
     itemStatValue: {
         color: SECONDARY_COLOR,
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: '600',
     },
 });

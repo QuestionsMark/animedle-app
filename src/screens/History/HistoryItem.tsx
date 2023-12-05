@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const HistoryItem = ({ item, last }: Props) => {
-    const { solved, title, trials } = item;
+    const { solved, title, trials, withHint } = item;
 
     const style: ViewStyle[] = [componentsStyles.cardWithoutShadow, historyStyles.item];
     if (solved) {
@@ -30,6 +30,14 @@ export const HistoryItem = ({ item, last }: Props) => {
                     </Text>
                     <Text style={historyStyles.itemStatValue}>
                         {trials}
+                    </Text>
+                </View>
+                <View style={historyStyles.itemStat}>
+                    <Text style={historyStyles.itemStatTitle}>
+                        Hint used:
+                    </Text>
+                    <Text style={historyStyles.itemStatValue}>
+                        {withHint || 'no hint'}
                     </Text>
                 </View>
             </View>
