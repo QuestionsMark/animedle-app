@@ -46,6 +46,11 @@ export const componentsStyles = StyleSheet.create({
         borderRadius: 16,
         backgroundColor: '#fff',
     },
+    cardWithoutShadow: {
+        padding: 15,
+        borderRadius: 16,
+        backgroundColor: '#fff',
+    },
 
     // Title
     title: {

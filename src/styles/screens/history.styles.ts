@@ -1,0 +1,53 @@
+import { StyleSheet } from "react-native";
+import { PRIMARY_COLOR, SECONDARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
+
+export const historyStyles = StyleSheet.create({
+    container: {
+        height: '100%',
+        paddingTop: 74,
+    },
+    content: {
+        flex: 1,
+        gap: 20,
+        padding: 20,
+    },
+    item: {
+        gap: 10,
+        borderWidth: 2,
+        borderColor: WARN_COLOR,
+        marginBottom: 15,
+    },
+    itemLast: {
+        marginBottom: 0,
+    },
+    itemCorrect: {
+        borderColor: SUCCESS_COLOR,
+    },
+    itemTitle: {
+        color: PRIMARY_COLOR,
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    itemStats: {
+        gap: 10,
+        width: '100%',
+    },
+    itemStat: {
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
+        paddingVertical: 3,
+        borderBottomWidth: 1,
+        borderBottomColor: PRIMARY_COLOR,
+    },
+    itemStatTitle: {
+        color: PRIMARY_COLOR,
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    itemStatValue: {
+        color: SECONDARY_COLOR,
+        fontSize: 18,
+        fontWeight: '600',
+    },
+});
