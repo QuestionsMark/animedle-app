@@ -15,15 +15,15 @@ export const defaultLoginState: RegisterState = {
 };
 
 export const RegisterForm = () => {
-    const { setError, setLoading, setMessage } = usePromises();
+    const { endLoading, setError, setMessage, startLoading } = usePromises();
     const navigation = useNavigation<NavigationProp<TabList>>();
 
     const handleSubmit = async (state: RegisterState) => {
-        setLoading(true);
+        startLoading();
         const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'POST', state));
 
         setTimeout(() => {
-            setLoading(false);
+            endLoading();
             setTimeout(() => {
                 if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
                 setMessage({ text1: response.results });

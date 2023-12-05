@@ -8,6 +8,7 @@ import { Auth } from "../../types";
 import * as SecureStore from 'expo-secure-store';
 import { LoginFormContent } from "./LoginFormContent";
 import { componentsStyles } from "../../styles";
+import { Keyboard } from "react-native";
 
 export const defaultLoginState: LoginState = {
     email: '',
@@ -15,15 +16,15 @@ export const defaultLoginState: LoginState = {
 };
 
 export const LoginForm = () => {
-    const { setError, setLoading } = usePromises();
+    const { setError, endLoading, startLoading, } = usePromises();
     const { setUser } = useUser();
 
     const handleSubmit = async (values: LoginState) => {
-        setLoading(true);
+        startLoading();
         const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', values));
-
         setTimeout(() => {
-            setLoading(false);
+            Keyboard.dismiss();
+            endLoading();
             setTimeout(async () => {
                 if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
                 await SecureStore.setItemAsync(Auth.SecureStoreKey.Auth, response.results.token);

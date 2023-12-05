@@ -49,11 +49,14 @@ export const PromisesProvider = ({ children }: Props) => {
     const [info, setInfo] = useState<ToastValue | null>(null);
     const [message, setMessage] = useState<ToastValue | null>(null);
 
-    const endLoading = () => {
-        hideLoader();
-        setTimeout(() => {
-            setLoading(false);
-        }, 500);
+    const endLoading = (): Promise<void> => {
+        return new Promise((resolve) => {
+            hideLoader();
+            setTimeout(() => {
+                setLoading(false);
+                resolve();
+            }, 500);
+        });
     };
 
     const startLoading = () => {
@@ -64,10 +67,10 @@ export const PromisesProvider = ({ children }: Props) => {
         if (error && !loading) Toast.show({ type: 'error', text1: error.text1, text2: error.text2 || '' });
         if (info && !loading) Toast.show({ type: 'info', text1: info.text1, text2: info.text2 || '' });
         if (message && !loading) Toast.show({ type: 'success', text1: message.text1, text2: message.text2 || '' });
-        setError(null);
-        setInfo(null);
-        setMessage(null);
-    }, [error, loading, message]);
+        // setError(null);
+        // setInfo(null);
+        // setMessage(null);
+    }, [error, loading, message, info]);
 
     return (
         <PromisesContext.Provider value={{

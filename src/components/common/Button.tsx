@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
+import { ViewStyle } from "react-native";
 import { Button as RNPButton } from "react-native-paper";
 import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
-import { PRIMARY_LIGHT_COLOR } from "../../styles";
+import { PRIMARY_LIGHT_COLOR, componentsStyles } from "../../styles";
 
 interface Props {
     onPress(): void;
@@ -14,14 +15,23 @@ interface Props {
 }
 
 export const Button = ({ onPress, buttonColor, children, disabled, icon, style, textColor }: Props) => {
+    const styles: ViewStyle[] = [];
+    if (style) {
+        styles.push(style);
+    }
+    if (disabled) {
+        styles.push(componentsStyles.buttonDisabled);
+    }
+
     return (
         <RNPButton
             onPress={onPress}
             textColor={textColor || "#fff"}
             buttonColor={buttonColor || PRIMARY_LIGHT_COLOR}
             icon={icon}
-            style={style}
+            style={styles}
             disabled={disabled}
+            mode="contained"
         >
             {children}
         </RNPButton>

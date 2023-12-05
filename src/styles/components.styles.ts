@@ -63,6 +63,11 @@ export const componentsStyles = StyleSheet.create({
         backgroundColor: '#fff',
     },
 
+    // Button
+    buttonDisabled: {
+        backgroundColor: '#ddd',
+    },
+
     // Icon button
     iconButton: {
         width: 50,

@@ -4,6 +4,7 @@ export * from './global.styles';
 
 // Components
 export * from './components/form.styles';
+export * from './components/popup.styles';
 
 // Screens
 export * from './screens/login.styles';

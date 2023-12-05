@@ -37,7 +37,7 @@ export const HistoryItem = ({ item, last }: Props) => {
                         Hint used:
                     </Text>
                     <Text style={historyStyles.itemStatValue}>
-                        {withHint || 'no hint'}
+                        {withHint || '-'}
                     </Text>
                 </View>
             </View>

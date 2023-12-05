@@ -1,23 +1,28 @@
 import { View } from "react-native";
 import { profileStyles } from "../../styles";
-import { useProfileInfo } from "../../contexts/profile.context";
+import { useProfile, useProfileInfo } from "../../contexts/profile.context";
 import { URLImage } from "../../components/common/URLImage";
 import { IconButton } from "../../components/common/IconButton";
+import { usePopup } from "../../contexts/popup.context";
+import { ChangeSkinPopup } from "../../components/popups/ChangeSkinPopup";
+import { GenerateSkinPopup } from "../../components/popups/GenerateSkinPopup";
 
 export const Avatar = () => {
-    const { avatar } = useProfileInfo();
+    const { open } = usePopup();
+    const { setProfile } = useProfile();
+    const profileContext = useProfileInfo();
 
     const handleAvatarGenerate = async () => {
-        console.log('generujemy');
+        open(<GenerateSkinPopup profileContext={profileContext} setProfileContext={setProfile} />);
     };
 
     const handleOpenSkins = () => {
-        console.log('Skinki');
+        open(<ChangeSkinPopup profileContext={profileContext} setProfileContext={setProfile} />);
     };
 
     return (
         <View style={profileStyles.avatar}>
-            <URLImage id={avatar} style={profileStyles.avatarImage} />
+            <URLImage id={profileContext.avatar} style={profileStyles.avatarImage} />
             <View style={profileStyles.avatarButtons}>
                 <IconButton icon="cog" onPress={handleOpenSkins} size={28} />
                 <IconButton icon="refresh" onPress={handleAvatarGenerate} size={28} />
