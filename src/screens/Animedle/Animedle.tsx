@@ -32,7 +32,7 @@ export const Animedle = () => {
 
     return (
         <View style={animedleStyles.container}>
-            <ScreenHeader title="Animedle0" />
+            <ScreenHeader title="Animedle" />
             <View style={animedleStyles.content}>
                 <ScrollView
                     style={animedleStyles.content}
