@@ -21,12 +21,6 @@ export namespace Animedle {
         Incorrect = 'Incorrect',
     }
 
-    export interface Answear {
-        guesAnswear: string | number;
-        correctness: Correctness;
-        answearHint?: string;
-    }
-
     export enum HintType {
         Genre = 'Genre',
         Year = 'Year',
@@ -37,6 +31,21 @@ export namespace Animedle {
         Format = 'Format',
         AverageScore = 'Average Score',
         Popularity = 'Popularity',
+    }
+
+    export interface AnswearInfo {
+        title: string;
+        description: string;
+        errorTolerance: {
+            correct: string;
+            almost: string;
+        };
+    }
+
+    export interface Answear {
+        guesAnswear: string | number;
+        correctness: Correctness;
+        hintType: HintType;
     }
 
     export interface Hint {
@@ -128,6 +137,46 @@ export namespace Animedle {
                         };
                     }[];
                 };
+            };
+        };
+    }
+
+    export interface SuggestionsResponse {
+        data: {
+            Page: {
+                pageInfo: {
+                    total: number;
+                    currentPage: number;
+                    lastPage: number;
+                    hasNextPage: boolean;
+                    perPage: number;
+                };
+                media: {
+                    title: {
+                        romaji: string;
+                    };
+                    format: Format;
+                }[];
+            };
+        };
+    }
+
+    export interface DrawAnimeResponse {
+        data: {
+            Page: {
+                pageInfo: {
+                    total: number;
+                    lastPage: number;
+                    perPage: number;
+                };
+                media: {
+                    id: number;
+                    title: {
+                        romaji: string;
+                    };
+                    format: Format;
+                    popularity: number;
+                }[];
             };
         };
     }

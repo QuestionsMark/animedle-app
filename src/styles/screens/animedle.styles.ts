@@ -111,10 +111,6 @@ export const animedleStyles = StyleSheet.create({
         left: '4%',
         top: '80%',
     },
-    // guesContentItemStar4: {
-    //     left: '13%',
-    //     top: '100%',
-    // },
     guesContentItemStar5: {
         right: '4%',
         top: '-6%',
@@ -127,10 +123,6 @@ export const animedleStyles = StyleSheet.create({
         right: '4%',
         top: '80%',
     },
-    // guesContentItemStar8: {
-    //     right: '13%',
-    //     top: '100%',
-    // },
     guesContentItemTitle: {
         position: 'relative',
         flex: 1,
@@ -175,6 +167,34 @@ export const animedleStyles = StyleSheet.create({
     },
     guesContentItemAnswearText: {
         textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '600',
+    },
+
+    // Answear popup
+    answearPopupBody: {
+        gap: 30,
+        paddingTop: 10,
+    },
+    answearPopupDescription: {
+        ...componentsStyles.card,
+        alignItems: 'center',
+        gap: 10,
+    },
+    answearPopupDescriptionValue: {
+        width: '100%',
+        color: PRIMARY_COLOR,
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    answearPopupFault: {
+        ...componentsStyles.card,
+        alignItems: 'center',
+        gap: 10,
+    },
+    answearPopupFaultValue: {
+        width: '100%',
+        color: PRIMARY_COLOR,
         fontSize: 14,
         fontWeight: '600',
     },

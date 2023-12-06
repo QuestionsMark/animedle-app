@@ -1,6 +1,8 @@
-import { Text, View, ViewStyle } from "react-native";
+import { Pressable, Text, ViewStyle } from "react-native";
 import { animedleStyles } from "../../styles";
 import { Animedle } from "../../types";
+import { usePopup } from "../../contexts/popup.context";
+import { AnswearInfoPopup } from "../../components/popups/AnswearInfoPopup";
 
 interface Props {
     item: Animedle.Answear;
@@ -8,6 +10,8 @@ interface Props {
 
 export const AnswearItem = ({ item }: Props) => {
     const { correctness, guesAnswear } = item;
+
+    const { open } = usePopup();
 
     const getCorrectnessStyle = (): ViewStyle => {
         switch (correctness) {
@@ -24,10 +28,13 @@ export const AnswearItem = ({ item }: Props) => {
     }
 
     return (
-        <View style={[animedleStyles.guesContentItemAnswear, getCorrectnessStyle()]}>
+        <Pressable
+            style={[animedleStyles.guesContentItemAnswear, getCorrectnessStyle()]}
+            onPress={() => open(<AnswearInfoPopup item={item} />)}
+        >
             <Text style={animedleStyles.guesContentItemAnswearText}>
                 {guesAnswear}
             </Text>
-        </View>
+        </Pressable>
     );
 };
