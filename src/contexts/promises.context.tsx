@@ -19,7 +19,7 @@ interface PromisesContextValue {
     setLoading: (isLoading: boolean) => void;
     endLoading(): void;
     startLoading(): void;
-    setToast: Dispatch<SetStateAction<ToastValue>>;
+    setToast: Dispatch<SetStateAction<ToastValue | null>>;
 }
 
 export const PromisesContext = createContext<PromisesContextValue>(null!);
@@ -28,7 +28,7 @@ export const usePromises = () => useContext(PromisesContext);
 
 export const PromisesProvider = ({ children }: Props) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [toast, setToast] = useState<ToastValue>({ type: 'success', text1: '' });
+    const [toast, setToast] = useState<ToastValue | null>(null);
 
     const endLoading = (): Promise<void> => {
         return new Promise((resolve) => {
@@ -45,6 +45,7 @@ export const PromisesProvider = ({ children }: Props) => {
     };
 
     useEffect(() => {
+        if (!toast) return;
         const { text1, type, text2 } = toast;
         Toast.show({ type, text1, text2 });
     }, [toast]);
