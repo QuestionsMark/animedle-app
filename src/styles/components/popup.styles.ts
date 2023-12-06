@@ -5,7 +5,7 @@ export const popupStyles = StyleSheet.create({
     layout: {
         position: 'absolute',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: '100%',
         paddingHorizontal: 20,
         paddingTop: 30,
         paddingBottom: 50,
