@@ -4,7 +4,7 @@ import { Title } from "../../components/common/Title";
 import { useProfileInfo } from "../../contexts/profile.context";
 
 export const Stats = () => {
-    const { skins, streak, winStreak } = useProfileInfo();
+    const { bestStreak, bestWinStreak, skins, streak, winStreak } = useProfileInfo();
 
     return (
         <View style={[componentsStyles.card, profileStyles.stats]}>
@@ -12,10 +12,26 @@ export const Stats = () => {
             <View style={profileStyles.statsList}>
                 <View style={profileStyles.statsItem}>
                     <Text style={profileStyles.statsItemTitle}>
+                        Best daily streak:
+                    </Text>
+                    <Text style={profileStyles.statsItemValue}>
+                        {bestStreak}
+                    </Text>
+                </View>
+                <View style={profileStyles.statsItem}>
+                    <Text style={profileStyles.statsItemTitle}>
                         Daily streak:
                     </Text>
                     <Text style={profileStyles.statsItemValue}>
                         {streak}
+                    </Text>
+                </View>
+                <View style={profileStyles.statsItem}>
+                    <Text style={profileStyles.statsItemTitle}>
+                        Best win streak:
+                    </Text>
+                    <Text style={profileStyles.statsItemValue}>
+                        {bestWinStreak}
                     </Text>
                 </View>
                 <View style={profileStyles.statsItem}>
