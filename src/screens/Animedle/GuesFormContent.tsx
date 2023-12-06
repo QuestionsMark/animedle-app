@@ -17,8 +17,6 @@ interface Props {
 export const GuesFormContent = ({ formikProps, handleSearchPhraseChange, resetSuggestions, suggestions }: Props) => {
     const { isFinished } = useAnimedleInfo();
 
-    // const { data, handleSearchPhraseChange, reset } = useSearch<string>('animedle/suggestions', 5);
-
     const handleTextChange = (value: string) => {
         handleSearchPhraseChange(value);
         formikProps.handleChange('title')(value);
