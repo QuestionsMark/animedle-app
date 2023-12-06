@@ -1,7 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { componentsStyles } from "../components.styles";
-import { INFO_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
-import { globalStyles } from "../global.styles";
+import { INFO_COLOR, PRIMARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
 
 export const animedleStyles = StyleSheet.create({
     container: {
@@ -10,8 +9,11 @@ export const animedleStyles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        gap: 20,
+    },
+    scrollContent: {
         padding: 20,
+        gap: 20,
+        height: '100%',
     },
 
     // Gues form

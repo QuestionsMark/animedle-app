@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { PRIMARY_COLOR, SECONDARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
 
 export const historyStyles = StyleSheet.create({
@@ -8,17 +8,15 @@ export const historyStyles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        gap: 20,
         padding: 20,
+    },
+    scrollContent: {
+        gap: 15,
     },
     item: {
         gap: 10,
         borderWidth: 2,
         borderColor: WARN_COLOR,
-        marginBottom: 15,
-    },
-    itemLast: {
-        marginBottom: 0,
     },
     itemCorrect: {
         borderColor: SUCCESS_COLOR,

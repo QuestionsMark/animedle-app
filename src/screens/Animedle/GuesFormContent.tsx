@@ -4,18 +4,20 @@ import { FormikProps } from "formik";
 import { SECONDARY_COLOR, animedleStyles } from "../../styles";
 import { useAnimedleInfo } from "../../contexts/animedle.context";
 import { AutocompleteInput } from "../../components/common/AutocompleteTextInput";
-import { useSearch } from "../../hooks/useSearch";
 
 interface Props {
     formikProps: FormikProps<{
         title: string;
     }>;
+    suggestions: string[];
+    handleSearchPhraseChange(value: string): void;
+    resetSuggestions(): void;
 }
 
-export const GuesFormContent = ({ formikProps }: Props) => {
+export const GuesFormContent = ({ formikProps, handleSearchPhraseChange, resetSuggestions, suggestions }: Props) => {
     const { isFinished } = useAnimedleInfo();
 
-    const { data, handleSearchPhraseChange, reset } = useSearch<string>('animedle/suggestions', 5);
+    // const { data, handleSearchPhraseChange, reset } = useSearch<string>('animedle/suggestions', 5);
 
     const handleTextChange = (value: string) => {
         handleSearchPhraseChange(value);
@@ -24,7 +26,7 @@ export const GuesFormContent = ({ formikProps }: Props) => {
 
     const handleSuggestionPress = (suggestion: string) => {
         formikProps.handleChange('title')(suggestion);
-        reset();
+        resetSuggestions();
     }
 
     return (
@@ -37,7 +39,7 @@ export const GuesFormContent = ({ formikProps }: Props) => {
                 editable={!isFinished}
                 style={animedleStyles.guesFormAutocompletion}
                 textInputStyle={animedleStyles.guesFormAutocompletionInput}
-                suggestions={data}
+                suggestions={suggestions}
             />
             <Button
                 onPress={() => formikProps.handleSubmit()}

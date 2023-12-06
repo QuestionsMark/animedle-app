@@ -30,7 +30,7 @@ export const ProfileProvider = ({ children }: Props) => {
         if (profile !== null) return;
         (async () => {
             startLoading();
-            const { delayTime, response } = await minimalDelayFunction<Profile.ContextValue>(() => fetchTool('profile'));
+            const { delayTime, response } = await minimalDelayFunction<Profile.ContextValue>(() => fetchTool('user/profile'));
             setTimeout(() => {
                 endLoading();
                 if (!response.status) {

@@ -4,18 +4,14 @@ import { Animedle } from "../../types";
 
 interface Props {
     item: Animedle.Item;
-    last: boolean;
 }
 
-export const HistoryItem = ({ item, last }: Props) => {
+export const HistoryItem = ({ item }: Props) => {
     const { solved, title, trials, withHint } = item;
 
     const style: ViewStyle[] = [componentsStyles.cardWithoutShadow, historyStyles.item];
     if (solved) {
         style.push(historyStyles.itemCorrect);
-    }
-    if (last) {
-        style.push(historyStyles.itemLast);
     }
 
     return (

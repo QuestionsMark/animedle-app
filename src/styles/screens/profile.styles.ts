@@ -9,8 +9,11 @@ export const profileStyles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        gap: 20,
+    },
+    scrollContent: {
         padding: 20,
+        gap: 15,
+        height: '100%',
     },
 
     // Avatar
