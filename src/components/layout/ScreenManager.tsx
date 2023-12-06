@@ -4,12 +4,12 @@ import { Entypo, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icon
 
 import { useUser } from "../../contexts/user.context";
 
-import { Animedle } from "../../screens/Animedle/Animedle";
-import { History } from "../../screens/History/History";
-import { Profile } from "../../screens/Profile/Profile";
 import { Settings } from "../../screens/Settings/Settings";
 import { Login } from "../../screens/Login/Login";
 import { Register } from "../../screens/Register/Register";
+import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
+import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
+import { HistoryScreen } from "../../screens/History/HistoryScreen";
 
 export type TabList = {
     Animedle: undefined;
@@ -35,21 +35,21 @@ const loginTabArr: NavTab[] = [
         name: 'Animedle',
         label: 'Quiz',
         icon: (color: string) => <MaterialCommunityIcons name="sword" size={26} color={color} />,
-        component: Animedle,
+        component: AnimedleScreen,
         tabBarColor: '#564875',
     },
     {
         name: 'Profile',
         label: 'Profile',
         icon: (color: string) => <MaterialCommunityIcons name="face-man-profile" size={26} color={color} />,
-        component: Profile,
+        component: ProfileScreen,
         tabBarColor: '#61547E',
     },
     {
         name: 'History',
         label: 'History',
         icon: (color: string) => <MaterialIcons name="history" size={26} color={color} />,
-        component: History,
+        component: HistoryScreen,
         tabBarColor: '#6D6188',
     },
     {

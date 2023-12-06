@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const formStyles = StyleSheet.create({
     input: {
-        width: '100%',
+        flex: 1,
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderWidth: 2,

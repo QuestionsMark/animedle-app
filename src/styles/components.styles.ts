@@ -1,17 +1,8 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { globalStyles } from "./global.styles";
+import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR } from "./variables.styles";
 
 export const componentsStyles = StyleSheet.create({
-    //Loader
-    loader: {
-        position: 'absolute',
-        width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.4)',
-    },
-
     // ScreenHeader
     screenHeader: {
         position: 'absolute',
@@ -46,5 +37,82 @@ export const componentsStyles = StyleSheet.create({
         width: 20,
         height: 2,
         backgroundColor: 'rgba(86, 72, 117, 0.2)',
+    },
+
+    // Card
+    card: {
+        ...globalStyles.shadow,
+        padding: 15,
+        borderRadius: 16,
+        backgroundColor: '#fff',
+    },
+    cardWithoutShadow: {
+        padding: 15,
+        borderRadius: 16,
+        backgroundColor: '#fff',
+    },
+
+    // Title
+    title: {
+        ...globalStyles.shadow,
+        ...globalStyles.titleFont,
+        marginTop: -25,
+        paddingHorizontal: 30,
+        paddingVertical: 15,
+        borderRadius: 30,
+        backgroundColor: '#fff',
+    },
+
+    // Button
+    buttonDisabled: {
+        backgroundColor: '#ddd',
+    },
+
+    // Icon button
+    iconButton: {
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 100,
+        backgroundColor: PRIMARY_LIGHT_COLOR,
+        color: '#fff',
+    },
+
+    // Logo
+    logo: {
+        width: 140,
+        height: 140,
+    },
+
+    // Autocomplete
+    autocomplete: {
+        position: 'relative',
+    },
+    autocompletionList: {
+        position: 'absolute',
+        top: '100%',
+        left: 0,
+        right: 0,
+        backgroundColor: '#fff',
+        borderWidth: 2,
+        borderColor: 'rgba(86, 72, 117, 0.2)',
+        borderRadius: 16,
+    },
+    autocompletionItem: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 50,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderBottomColor: 'rgba(86, 72, 117, 0.2)',
+        borderBottomWidth: 2,
+    },
+    autocompletionItemValue: {
+        color: PRIMARY_COLOR,
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '600',
+
     },
 });

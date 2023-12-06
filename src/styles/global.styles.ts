@@ -9,11 +9,6 @@ export const globalStyles = StyleSheet.create({
     },
 
     // Common
-    card: {
-        borderWidth: 2,
-        borderColor: 'rgba(86, 72, 117, 0.2)',
-        borderRadius: 16,
-    },
     shadow: {
         shadowColor: "#000",
         shadowOffset: {
@@ -24,6 +19,17 @@ export const globalStyles = StyleSheet.create({
         shadowRadius: 4.65,
 
         elevation: 7,
+    },
+    maxShadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+
+        elevation: 12,
     },
     titleFont: {
         color: PRIMARY_COLOR,

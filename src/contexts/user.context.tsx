@@ -23,21 +23,21 @@ export const useUserInfo = () => {
 };
 
 export const UserProvider = ({ children }: Props) => {
-    const { setLoading, setError } = usePromises();
+    const { endLoading, setToast, startLoading } = usePromises();
 
     const [user, setUser] = useState<User.ContextValue | null>(null);
 
     useEffect(() => {
         if (user !== null) return;
         (async () => {
-            setLoading(true);
+            startLoading();
             const { delayTime, response } = await minimalDelayFunction<User.ContextValue>(() => fetchTool('auth/is-logged'));
             setTimeout(() => {
-                setLoading(false);
+                endLoading();
                 if (!response.status) {
                     SecureStore.deleteItemAsync(Auth.SecureStoreKey.Auth);
                     setUser(null);
-                    setError({ text1: 'Authorization Error', text2: 'Session has expired.' });
+                    setToast({ type: 'error', text1: 'Authorization Error', text2: 'Session has expired.' });
                     return;
                 };
                 setUser(response.results);

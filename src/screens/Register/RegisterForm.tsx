@@ -2,10 +2,11 @@ import { Formik } from "formik";
 import { usePromises } from "../../contexts/promises.context";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { RegisterState } from "../../validation/register.validation";
-import { globalStyles } from "../../styles";
+import { componentsStyles } from "../../styles";
 import { RegisterFormContent } from "./RegisterFormContent";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { TabList } from "../../components/layout/ScreenManager";
+import { Keyboard } from "react-native";
 
 export const defaultLoginState: RegisterState = {
     confirmPassword: '',
@@ -15,20 +16,18 @@ export const defaultLoginState: RegisterState = {
 };
 
 export const RegisterForm = () => {
-    const { setError, setLoading, setMessage } = usePromises();
+    const { endLoading, startLoading, setToast } = usePromises();
     const navigation = useNavigation<NavigationProp<TabList>>();
 
     const handleSubmit = async (state: RegisterState) => {
-        setLoading(true);
+        startLoading();
         const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'POST', state));
-
         setTimeout(() => {
-            setLoading(false);
-            setTimeout(() => {
-                if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
-                setMessage({ text1: response.results });
-                navigation.navigate('Login');
-            });
+            Keyboard.dismiss();
+            endLoading();
+            if (!response.status) return setToast({ type: 'error', text1: 'Authorization Error!', text2: response.message });
+            setToast({ type: 'success', text1: response.results });
+            navigation.navigate('Login');
         }, delayTime);
     };
 
@@ -36,7 +35,7 @@ export const RegisterForm = () => {
         <Formik
             initialValues={defaultLoginState}
             onSubmit={handleSubmit}
-            style={globalStyles.card}
+            style={componentsStyles.card}
         >
             {(props) => <RegisterFormContent formikProps={props} />}
         </Formik>

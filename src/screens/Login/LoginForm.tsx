@@ -7,7 +7,8 @@ import { Auth } from "../../types";
 
 import * as SecureStore from 'expo-secure-store';
 import { LoginFormContent } from "./LoginFormContent";
-import { globalStyles } from "../../styles";
+import { componentsStyles } from "../../styles";
+import { Keyboard } from "react-native";
 
 export const defaultLoginState: LoginState = {
     email: '',
@@ -15,20 +16,18 @@ export const defaultLoginState: LoginState = {
 };
 
 export const LoginForm = () => {
-    const { setError, setLoading } = usePromises();
+    const { endLoading, startLoading, setToast } = usePromises();
     const { setUser } = useUser();
 
     const handleSubmit = async (values: LoginState) => {
-        setLoading(true);
+        startLoading();
         const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', values));
-
-        setTimeout(() => {
-            setLoading(false);
-            setTimeout(async () => {
-                if (!response.status) return setError({ text1: 'Authorization Error!', text2: response.message });
-                await SecureStore.setItemAsync(Auth.SecureStoreKey.Auth, response.results.token);
-                setUser(response.results.user);
-            });
+        setTimeout(async () => {
+            Keyboard.dismiss();
+            endLoading();
+            if (!response.status) return setToast({ type: 'error', text1: 'Authorization Error!', text2: response.message });
+            await SecureStore.setItemAsync(Auth.SecureStoreKey.Auth, response.results.token);
+            setUser(response.results.user);
         }, delayTime);
     };
 
@@ -36,7 +35,7 @@ export const LoginForm = () => {
         <Formik
             initialValues={defaultLoginState}
             onSubmit={handleSubmit}
-            style={globalStyles.card}
+            style={componentsStyles.card}
         >
             {(props) => <LoginFormContent formikProps={props} />}
         </Formik>
