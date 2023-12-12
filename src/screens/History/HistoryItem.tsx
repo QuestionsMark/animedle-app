@@ -1,36 +1,49 @@
-import { Text, View, ViewStyle } from "react-native";
-import { componentsStyles, historyStyles } from "../../styles";
+import { Text, View, TextStyle } from "react-native";
+import { historyStyles } from "../../styles";
 import { Animedle } from "../../types";
+import { FormattedDate } from "react-intl";
 
 interface Props {
     item: Animedle.Item;
 }
 
 export const HistoryItem = ({ item }: Props) => {
-    const { solved, title, trials, withHint } = item;
+    const { solved, title, trials, withHint, createdAt } = item;
 
-    const style: ViewStyle[] = [componentsStyles.cardWithoutShadow, historyStyles.item];
+    const style: TextStyle[] = [historyStyles.itemTitle];
     if (solved) {
-        style.push(historyStyles.itemCorrect);
+        style.push(historyStyles.itemTitleCorrect);
     }
 
     return (
-        <View style={style}>
-            <Text style={historyStyles.itemTitle}>
+        <View style={historyStyles.item}>
+            <Text style={style}>
                 {title}
             </Text>
             <View style={historyStyles.itemStats}>
                 <View style={historyStyles.itemStat}>
                     <Text style={historyStyles.itemStatTitle}>
-                        Trials:
+                        Date
                     </Text>
                     <Text style={historyStyles.itemStatValue}>
-                        {trials}
+                        <FormattedDate
+                            value={createdAt}
+                            day="numeric"
+                            month="short"
+                        />
                     </Text>
                 </View>
                 <View style={historyStyles.itemStat}>
                     <Text style={historyStyles.itemStatTitle}>
-                        Hint used:
+                        Tries
+                    </Text>
+                    <Text style={historyStyles.itemStatValue}>
+                        {trials}/10
+                    </Text>
+                </View>
+                <View style={historyStyles.itemStat}>
+                    <Text style={historyStyles.itemStatTitle}>
+                        Hint
                     </Text>
                     <Text style={historyStyles.itemStatValue}>
                         {withHint || '-'}

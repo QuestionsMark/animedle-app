@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { PRIMARY_COLOR, SECONDARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
+import { PRIMARY_COLOR, PRIMARY_LIGHT_COLOR, SECONDARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variables.styles";
+import { componentsStyles } from "../components.styles";
 
 export const historyStyles = StyleSheet.create({
     container: {
@@ -8,40 +9,44 @@ export const historyStyles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: 20,
     },
     scrollContent: {
+        padding: 20,
         gap: 15,
     },
     item: {
-        gap: 10,
-        borderWidth: 2,
-        borderColor: WARN_COLOR,
+        ...componentsStyles.card,
+        gap: 15,
     },
     itemCorrect: {
-        borderColor: SUCCESS_COLOR,
+        // borderColor: SUCCESS_COLOR,
     },
     itemTitle: {
-        color: PRIMARY_COLOR,
-        fontSize: 14,
+        color: WARN_COLOR,
+        textAlign: 'center',
+        fontSize: 15,
         fontWeight: '600',
+    },
+    itemTitleCorrect: {
+        color: SUCCESS_COLOR,
     },
     itemStats: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         gap: 4,
-        width: '100%',
     },
     itemStat: {
-        flexDirection: 'row',
-        gap: 6,
+        ...componentsStyles.card,
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 3,
-        borderBottomWidth: 1,
-        borderBottomColor: PRIMARY_COLOR,
+        flexBasis: '30%',
+        paddingHorizontal: 8,
+        paddingVertical: 15,
     },
     itemStatTitle: {
-        color: PRIMARY_COLOR,
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: '600',
+        textTransform: 'uppercase',
     },
     itemStatValue: {
         color: SECONDARY_COLOR,
