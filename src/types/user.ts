@@ -3,4 +3,12 @@ export namespace User {
         id: string;
         username: string;
     }
+
+    export interface RankingItem {
+        id: string;
+        username: string;
+        points: number;
+        bestWinStreak: number;
+        avatar: string;
+    }
 }

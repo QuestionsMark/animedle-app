@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { Entypo, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 import { useUser } from "../../contexts/user.context";
 
@@ -10,6 +10,7 @@ import { Register } from "../../screens/Register/Register";
 import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
 import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
 import { HistoryScreen } from "../../screens/History/HistoryScreen";
+import { Ranking } from "../../screens/Ranking/Ranking";
 
 export type TabList = {
     Animedle: undefined;
@@ -18,6 +19,7 @@ export type TabList = {
     Settings: undefined;
     Login: undefined;
     Register: undefined;
+    Ranking: undefined;
 };
 
 interface NavTab {
@@ -39,25 +41,32 @@ const loginTabArr: NavTab[] = [
         tabBarColor: '#564875',
     },
     {
+        name: 'Ranking',
+        label: 'Ranking',
+        icon: (color: string) => <FontAwesome name="trophy" size={26} color={color} />,
+        component: Ranking,
+        tabBarColor: '#61547E',
+    },
+    {
         name: 'Profile',
         label: 'Profile',
         icon: (color: string) => <MaterialCommunityIcons name="face-man-profile" size={26} color={color} />,
         component: ProfileScreen,
-        tabBarColor: '#61547E',
+        tabBarColor: '#6D6188',
     },
     {
         name: 'History',
         label: 'History',
         icon: (color: string) => <MaterialIcons name="history" size={26} color={color} />,
         component: HistoryScreen,
-        tabBarColor: '#6D6188',
+        tabBarColor: '#796E92',
     },
     {
         name: 'Settings',
         label: 'Settings',
         icon: (color: string) => <MaterialIcons name="settings" size={26} color={color} />,
         component: Settings,
-        tabBarColor: '#796E92',
+        tabBarColor: '#857A9B',
     },
 ];
 
