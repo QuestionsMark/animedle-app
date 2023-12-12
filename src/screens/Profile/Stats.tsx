@@ -4,7 +4,7 @@ import { Title } from "../../components/common/Title";
 import { useProfileInfo } from "../../contexts/profile.context";
 
 export const Stats = () => {
-    const { bestStreak, bestWinStreak, skins, streak, winStreak } = useProfileInfo();
+    const { bestStreak, bestWinStreak, skinsCount, streak, winStreak } = useProfileInfo();
 
     return (
         <View style={[componentsStyles.card, profileStyles.stats]}>
@@ -47,7 +47,7 @@ export const Stats = () => {
                         Skins:
                     </Text>
                     <Text style={profileStyles.statsItemValue}>
-                        {skins.length}
+                        {skinsCount}
                     </Text>
                 </View>
             </View>

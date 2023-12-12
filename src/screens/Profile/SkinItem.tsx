@@ -7,11 +7,12 @@ interface Props {
     isActive: boolean;
     item: string;
     last: boolean;
+    refference?(node: any): void;
 }
 
-export const SkinItem = ({ handleSkinChoose, isActive, item, last }: Props) => {
+export const SkinItem = ({ handleSkinChoose, isActive, item, last, refference }: Props) => {
     return (
-        <Pressable onPress={() => handleSkinChoose(item)} style={last ? [profileStyles.changeSkinItem, profileStyles.changeSkinItemLast] : profileStyles.changeSkinItem}>
+        <Pressable ref={refference ?? null} onPress={() => handleSkinChoose(item)} style={last ? [profileStyles.changeSkinItem, profileStyles.changeSkinItemLast] : profileStyles.changeSkinItem}>
             <URLImage id={item} style={isActive ? [profileStyles.changeSkinItemImage, profileStyles.changeSkinItemImageActive] : profileStyles.changeSkinItemImage as any} />
         </Pressable>
     );

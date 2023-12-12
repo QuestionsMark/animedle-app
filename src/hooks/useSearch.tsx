@@ -20,6 +20,7 @@ export interface SearchResult<T> {
 export function useSearch<T>(
     collection: string,
     limit: number,
+    withoutSearch?: boolean,
 ): SearchResult<T> {
     const { setToast } = usePromises();
 
@@ -64,7 +65,7 @@ export function useSearch<T>(
 
 
     useEffect(() => {
-        if (!search) return;
+        if (!withoutSearch && !search) return;
         (async () => {
             const startTime = new Date().valueOf();
             if (delayTimeoutId.current) {

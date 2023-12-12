@@ -6,16 +6,21 @@ import { FlatList } from "react-native";
 import { SkinItem } from "../../screens/Profile/SkinItem";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePromises } from "../../contexts/promises.context";
-import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
+import { fetchTool, lastDataElementRef, minimalDelayFunction } from "../../utils/api.util";
+import { useSearch } from "../../hooks/useSearch";
 
 interface Props {
     profileContext: Profile.ContextValue;
     setProfileContext: Dispatch<SetStateAction<Profile.ContextValue | null>>;
 }
 
+const limit = 24;
+
 export const ChangeSkinPopup = ({ profileContext, setProfileContext }: Props) => {
-    const { avatar, skins } = profileContext;
+    const { avatar } = profileContext;
     const { endLoading, setToast, startLoading } = usePromises();
+
+    const { amount, data, hasMore, loading, page, setPage } = useSearch<string>('user/skins', 24, true);
 
     const [choosedSkin, setChoosedSkin] = useState(avatar);
     const handleSkinChoose = (skin: string) => {
@@ -37,18 +42,21 @@ export const ChangeSkinPopup = ({ profileContext, setProfileContext }: Props) =>
         <Popup>
             {(close) => (<>
                 <Popup.Header title="Choose Your Skin" />
-                <Popup.Body style={profileStyles.changeSkin}>
+                <Popup.Body>
                     <FlatList
-                        data={skins}
+                        data={data}
                         renderItem={({ index, item }) => (
                             <SkinItem
                                 handleSkinChoose={handleSkinChoose}
                                 isActive={item === choosedSkin}
                                 item={item}
-                                last={index === skins.length - 1}
+                                last={index === data.length - 1}
                             />
                         )}
                         keyExtractor={(skin) => skin}
+                        onEndReachedThreshold={0.2}
+                        onEndReached={() => lastDataElementRef(amount, hasMore, limit, loading, page, setPage)}
+                        numColumns={2}
                     />
                 </Popup.Body>
                 <Popup.Footer>

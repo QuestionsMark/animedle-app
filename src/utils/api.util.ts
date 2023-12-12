@@ -2,6 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { ClientResponse, ClientResponseError, Method, Auth, ServerErrorResponse } from '../types';
 
 import { HOST_ADDRESS } from '../../config/config';
+import { Dispatch, SetStateAction } from 'react';
 
 const setErrorResponse = (response: Response, res: ServerErrorResponse): ClientResponseError => {
     console.warn(res.message);
@@ -69,4 +70,9 @@ export async function fetchWithFileUpload<T>(path: string, method: Method = 'POS
 export const showProblem = (response: ServerErrorResponse): string => {
     if (response.problems && response.problems.length !== 0) return `${response.message} ${response.problems.join(' ')}`;
     return response.message;
-} 
+}
+
+export const lastDataElementRef = (amount: number, hasMore: boolean, limit: number, loading: boolean, page: number, setPage: Dispatch<SetStateAction<number>>) => {
+    if (loading || amount < page * limit || !hasMore) return;
+    setPage(prev => prev + 1);
+};

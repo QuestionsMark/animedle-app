@@ -65,11 +65,9 @@ export const profileStyles = StyleSheet.create({
     },
 
     // Change skin popup
-    changeSkin: {
-        padding: 10,
-    },
     changeSkinItem: {
-        marginBottom: 20,
+        width: '50%',
+        padding: 5,
     },
     changeSkinItemLast: {
         marginBottom: 0,
@@ -77,9 +75,9 @@ export const profileStyles = StyleSheet.create({
     changeSkinItemImage: {
         width: '100%',
         aspectRatio: 1 / 1,
-        borderWidth: 6,
+        borderWidth: 5,
         borderColor: PRIMARY_COLOR,
-        borderRadius: Dimensions.get('screen').width - 70,
+        borderRadius: 20,
     },
     changeSkinItemImageActive: {
         borderColor: SECONDARY_COLOR,
