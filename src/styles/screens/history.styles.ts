@@ -39,7 +39,7 @@ export const historyStyles = StyleSheet.create({
         ...componentsStyles.card,
         justifyContent: 'center',
         alignItems: 'center',
-        flexBasis: '30%',
+        flexBasis: (Dimensions.get('screen').width - 70) / 3 - 7,
         paddingHorizontal: 8,
         paddingVertical: 15,
     },
