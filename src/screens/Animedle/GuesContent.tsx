@@ -17,7 +17,7 @@ export const GuesContent = () => {
 
     return (
         <View style={animedleStyles.guesContent}>
-            <Title title={`Gueses ${gueses.length}/10`} />
+            <Title title={`Guesses ${gueses.length}/10`} />
             <FlatList
                 ref={ref => listRef.current = ref}
                 data={gueses}

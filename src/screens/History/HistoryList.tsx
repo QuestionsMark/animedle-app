@@ -5,7 +5,7 @@ export const HistoryList = () => {
     const { animedles } = useHistoryInfo();
 
     const historyList = () => {
-        return animedles.map(a => <HistoryItem item={a} />);
+        return animedles.map(a => <HistoryItem key={a.id} item={a} />);
     };
 
     return historyList();
