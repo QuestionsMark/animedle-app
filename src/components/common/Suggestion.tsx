@@ -8,7 +8,7 @@ interface Props {
 
 export const Suggestion = ({ onSuggestionPress, suggestion }: Props) => {
     return (
-        <Pressable onPress={() => onSuggestionPress(suggestion)}>
+        <Pressable onTouchStart={() => onSuggestionPress(suggestion)}>
             <View style={componentsStyles.autocompletionItem}>
                 <Text style={componentsStyles.autocompletionItemValue}>
                     {suggestion}

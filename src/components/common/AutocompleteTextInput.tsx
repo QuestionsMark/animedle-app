@@ -12,13 +12,20 @@ interface Props extends TextInputProps {
     textInputStyle?: TextStyle;
 }
 
-export const AutocompleteInput = ({ suggestions, onSuggestionPress, onFocus, style, textInputStyle, ...rest }: Props) => {
+export const AutocompleteInput = ({ suggestions, onSuggestionPress, onBlur, onFocus, style, textInputStyle, ...rest }: Props) => {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
         setIsFocused(true);
         if (typeof onFocus === 'function') {
             onFocus(e);
+        }
+    };
+
+    const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+        setIsFocused(false);
+        if (typeof onBlur === 'function') {
+            onBlur(e);
         }
     };
 
@@ -33,6 +40,7 @@ export const AutocompleteInput = ({ suggestions, onSuggestionPress, onFocus, sty
     return (
         <View style={style ? [componentsStyles.autocomplete, style] : componentsStyles.autocomplete}>
             <TextInput
+                onBlur={handleBlur}
                 onFocus={handleFocus}
                 style={textInputStyle}
                 {...rest}
