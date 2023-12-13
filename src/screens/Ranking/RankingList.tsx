@@ -20,6 +20,7 @@ export const RankingList = ({ loadMoreData, profiles, refresh, refreshing }: Pro
             onEndReachedThreshold={0.2}
             refreshing={refreshing}
             onRefresh={refresh}
+            style={rankingStyles.content}
             contentContainerStyle={rankingStyles.scrollContent}
         />
     );

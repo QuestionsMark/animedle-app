@@ -5,14 +5,14 @@ import { componentsStyles } from "../components.styles";
 export const historyStyles = StyleSheet.create({
     container: {
         height: '100%',
-        paddingTop: 74,
+        paddingTop: 94,
     },
     content: {
         flex: 1,
     },
     scrollContent: {
         padding: 20,
-        gap: 15,
+        gap: 20,
     },
     item: {
         ...componentsStyles.card,

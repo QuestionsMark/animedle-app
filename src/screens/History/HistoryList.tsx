@@ -20,6 +20,7 @@ export const HistoryList = ({ animedles, loadMoreData, refresh, refreshing }: Pr
             onEndReachedThreshold={0.2}
             refreshing={refreshing}
             onRefresh={refresh}
+            style={historyStyles.content}
             contentContainerStyle={historyStyles.scrollContent}
         />
     );

@@ -5,7 +5,7 @@ import { PRIMARY_COLOR, SECONDARY_COLOR } from "../variables.styles";
 export const rankingStyles = StyleSheet.create({
     container: {
         height: '100%',
-        paddingTop: 74,
+        paddingTop: 94,
     },
     content: {
         flex: 1,
@@ -13,7 +13,6 @@ export const rankingStyles = StyleSheet.create({
     scrollContent: {
         padding: 20,
         gap: 20,
-        height: '100%',
     },
     item: {
         ...componentsStyles.card,

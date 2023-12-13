@@ -5,15 +5,16 @@ import { componentsStyles } from "../components.styles";
 export const profileStyles = StyleSheet.create({
     container: {
         height: '100%',
-        paddingTop: 74,
+        paddingTop: 94,
     },
     content: {
         flex: 1,
     },
     scrollContent: {
-        padding: 20,
-        gap: 15,
-        height: '100%',
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+        gap: 20,
+        minHeight: '100%',
     },
 
     // Avatar
@@ -48,6 +49,7 @@ export const profileStyles = StyleSheet.create({
     },
     statsItem: {
         ...componentsStyles.card,
+        padding: 10,
         flexBasis: (Dimensions.get('screen').width - 70) / 3 - 7,
         justifyContent: 'center',
         alignItems: 'center',

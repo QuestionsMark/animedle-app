@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const HistoryItem = ({ item }: Props) => {
-    const { solved, title, trials, withHint, createdAt } = item;
+    const { solved, title, tries, withHint, createdAt } = item;
 
     const style: TextStyle[] = [historyStyles.itemTitle];
     if (solved) {
@@ -38,7 +38,7 @@ export const HistoryItem = ({ item }: Props) => {
                         Tries
                     </Text>
                     <Text style={historyStyles.itemStatValue}>
-                        {trials}/10
+                        {tries}/10
                     </Text>
                 </View>
                 <View style={historyStyles.itemStat}>

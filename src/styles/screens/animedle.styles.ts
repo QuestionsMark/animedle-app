@@ -5,15 +5,15 @@ import { INFO_COLOR, PRIMARY_COLOR, SUCCESS_COLOR, WARN_COLOR } from "../variabl
 export const animedleStyles = StyleSheet.create({
     container: {
         height: '100%',
-        paddingTop: 74,
+        paddingTop: 94,
     },
     content: {
         flex: 1,
     },
     scrollContent: {
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
         gap: 20,
-        height: '100%',
     },
 
     // Gues form
@@ -75,16 +75,13 @@ export const animedleStyles = StyleSheet.create({
     // Gues content
     guesContent: {
         ...componentsStyles.card,
-        flex: 1,
         alignItems: 'center',
         gap: 20,
     },
     guesContentList: {
-        flex: 1,
         width: '100%',
     },
     guesContentItem: {
-        flex: 1,
         gap: 15,
         width: Dimensions.get('screen').width - 70,
         padding: 10,
@@ -141,15 +138,15 @@ export const animedleStyles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
+        gap: 10,
     },
     guesContentItemAnswear: {
         ...componentsStyles.card,
-        flexBasis: '30%',
+        flexBasis: (Dimensions.get('screen').width - 90) / 3 - 7,
         position: 'relative',
         minHeight: 70,
         padding: 8,
         borderWidth: 1,
-        marginBottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
