@@ -1,12 +1,26 @@
-import { useHistoryInfo } from "../../contexts/history.context";
+import { FlatList } from "react-native";
+import { Animedle } from "../../types";
 import { HistoryItem } from "./HistoryItem";
+import { historyStyles } from "../../styles";
 
-export const HistoryList = () => {
-    const { animedles } = useHistoryInfo();
+interface Props {
+    loadMoreData(): void;
+    animedles: Animedle.Item[];
+    refresh(): void;
+    refreshing: boolean;
+}
 
-    const historyList = () => {
-        return animedles.map(a => <HistoryItem key={a.id} item={a} />);
-    };
-
-    return historyList();
+export const HistoryList = ({ animedles, loadMoreData, refresh, refreshing }: Props) => {
+    return (
+        <FlatList
+            data={animedles}
+            renderItem={({ item }) => <HistoryItem item={item} />}
+            keyExtractor={({ id }) => id}
+            onEndReached={loadMoreData}
+            onEndReachedThreshold={0.2}
+            refreshing={refreshing}
+            onRefresh={refresh}
+            contentContainerStyle={historyStyles.scrollContent}
+        />
+    );
 };

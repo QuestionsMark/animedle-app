@@ -9,8 +9,8 @@ import { Login } from "../../screens/Login/Login";
 import { Register } from "../../screens/Register/Register";
 import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
 import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
-import { HistoryScreen } from "../../screens/History/HistoryScreen";
 import { Ranking } from "../../screens/Ranking/Ranking";
+import { History } from "../../screens/History/History";
 
 export type TabList = {
     Animedle: undefined;
@@ -58,7 +58,7 @@ const loginTabArr: NavTab[] = [
         name: 'History',
         label: 'History',
         icon: (color: string) => <MaterialIcons name="history" size={26} color={color} />,
-        component: HistoryScreen,
+        component: History,
         tabBarColor: '#796E92',
     },
     {

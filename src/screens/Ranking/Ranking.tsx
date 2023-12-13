@@ -11,7 +11,7 @@ const limit = 15;
 
 export const Ranking = () => {
     const [refreshing, setRefreshing] = useState(false);
-    const { amount, data, hasMore, loading, page, setPage, refresh } = useSearch<User.RankingItem>('user/top', 15, true);
+    const { amount, data, hasMore, loading, page, setPage, refresh } = useSearch<User.RankingItem>('user/top', limit, true);
 
     useEffect(() => {
         if (refreshing && !loading) {
