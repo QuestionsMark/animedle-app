@@ -4,7 +4,7 @@ export const loaderStyles = StyleSheet.create({
     loader: {
         position: 'absolute',
         width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height - 80,
+        height: Dimensions.get('screen').height,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff',
