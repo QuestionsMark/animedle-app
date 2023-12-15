@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
@@ -11,6 +11,8 @@ import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
 import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
 import { Ranking } from "../../screens/Ranking/Ranking";
 import { History } from "../../screens/History/History";
+import { usePopup } from "../../contexts/popup.context";
+import { WelcomePopup } from "../popups/WelcomePopup/WelcomePopup";
 
 export type TabList = {
     Animedle: undefined;
@@ -94,6 +96,15 @@ export const ScreenManager = () => {
 };
 
 ScreenManager.Login = () => {
+    const { isWelcomePopupVisible } = useUser();
+    const { open } = usePopup();
+
+    useEffect(() => {
+        if (isWelcomePopupVisible) {
+            open(<WelcomePopup />);
+        }
+    }, []);
+
     return (
         <Tab.Navigator
             inactiveColor="#DDDAE3"

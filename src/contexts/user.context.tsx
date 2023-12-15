@@ -5,8 +5,10 @@ import { fetchTool, minimalDelayFunction } from "../utils/api.util";
 import { usePromises } from "./promises.context";
 
 interface UserContextValue {
-    user: User.ContextValue | null;
+    isWelcomePopupVisible: boolean;
+    setIsWelcomePopupVisible: Dispatch<SetStateAction<boolean>>;
     setUser: Dispatch<SetStateAction<User.ContextValue | null>>;
+    user: User.ContextValue | null;
 }
 
 interface Props {
@@ -26,6 +28,7 @@ export const UserProvider = ({ children }: Props) => {
     const { endLoading, setToast, startLoading } = usePromises();
 
     const [user, setUser] = useState<User.ContextValue | null>(null);
+    const [isWelcomePopupVisible, setIsWelcomePopupVisible] = useState(true);
 
     useEffect(() => {
         if (user !== null) return;
@@ -47,8 +50,10 @@ export const UserProvider = ({ children }: Props) => {
 
     return (
         <UserContext.Provider value={{
-            user,
+            isWelcomePopupVisible,
+            setIsWelcomePopupVisible,
             setUser,
+            user,
         }}>
             {children}
         </UserContext.Provider>

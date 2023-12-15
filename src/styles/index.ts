@@ -14,3 +14,6 @@ export * from './screens/loader.styles';
 export * from './screens/history.styles';
 export * from './screens/settings.styles';
 export * from './screens/ranking.styles';
+
+// Popups
+export * from './popups/welcome.styles';

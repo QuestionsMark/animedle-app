@@ -14,16 +14,16 @@ export default function App() {
     <PaperProvider theme={MD2LightTheme}>
       <IntlProvider locale={navigator.language || 'en'}>
         <PromisesProvider>
-          <PopupProvider>
-            <UserProvider>
+          <UserProvider>
+            <PopupProvider>
               <NavigationContainer>
                 <View style={globalStyles.app}>
                   <ScreenManager />
                 </View>
                 <StatusBar backgroundColor={PRIMARY_COLOR} />
               </NavigationContainer>
-            </UserProvider>
-          </PopupProvider>
+            </PopupProvider>
+          </UserProvider>
         </PromisesProvider>
       </IntlProvider>
       <Toast />

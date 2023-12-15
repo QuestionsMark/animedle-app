@@ -113,6 +113,24 @@ export const componentsStyles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 14,
         fontWeight: '600',
+    },
 
+    // Count down
+    countdown: {
+        flexDirection: 'row',
+        gap: 6,
+    },
+    countdownDigit: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 62,
+        height: 80,
+        borderRadius: 6,
+        backgroundColor: PRIMARY_LIGHT_COLOR,
+    },
+    countdownDigitValue: {
+        color: '#fff',
+        fontSize: 26,
+        fontWeight: '600',
     },
 });
