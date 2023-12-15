@@ -9,5 +9,6 @@ export const loaderStyles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         zIndex: 1000,
+        paddingBottom: 80,
     },
 });

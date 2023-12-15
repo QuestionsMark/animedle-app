@@ -1,31 +1,34 @@
-import { View } from "react-native";
-import { fetchTool } from "../../utils/api.util";
-import * as SecureStore from "expo-secure-store";
-import { Auth } from "../../types";
-import { useUser } from "../../contexts/user.context";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { TabList } from "../../components/layout/ScreenManager";
+import { SettingsHome } from "./SettingsHome";
+import { SettingsAccountDelete } from "./SettingsAccountDelete";
 import { settingsStyles } from "../../styles";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import { SettingsNav } from "./SettingsNav";
+import { useSettings } from "../../contexts/settings.context";
 import { ScreenHeader } from "../../components/layout/ScreenHeader";
-import { IconButton } from "../../components/common/IconButton";
 
 export const Settings = () => {
-    const { setUser } = useUser();
-    const { navigate } = useNavigation<NavigationProp<TabList>>();
+    const { nav } = useSettings();
 
-    const handleLogout = async () => {
-        await fetchTool('auth/logout');
-        await SecureStore.deleteItemAsync(Auth.SecureStoreKey.Auth);
-        setUser(null);
-        navigate('Login');
+    const getScreen = () => {
+        switch (nav) {
+            case 'AccountDelete': {
+                return <SettingsAccountDelete />
+            }
+            case 'Home': {
+                return <SettingsHome />
+            }
+        }
     };
 
     return (
         <View style={settingsStyles.container}>
             <ScreenHeader title="Settings" />
-            <View style={settingsStyles.content}>
-                <IconButton onPress={handleLogout} icon="power" size={50} style={settingsStyles.power} />
-            </View>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={settingsStyles.contentWrapper}>
+                    <SettingsNav />
+                    {getScreen()}
+                </View>
+            </TouchableWithoutFeedback>
         </View>
     );
 };

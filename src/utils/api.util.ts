@@ -30,7 +30,7 @@ export async function getAuthenticationHeaders(): Promise<{ [key: string]: strin
 export async function fetchTool<T>(path: string, method: Method = 'GET', body: any = undefined): Promise<ClientResponse<T>> {
     try {
         let headers = await getAuthenticationHeaders();
-        if (['POST', 'PATCH', 'PUT'].includes(method)) {
+        if (['POST', 'PATCH', 'PUT', 'DELETE'].includes(method)) {
             headers = {
                 ...headers,
                 'Content-Type': 'application/json',

@@ -4,13 +4,13 @@ import { Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@exp
 
 import { useUser } from "../../contexts/user.context";
 
-import { Settings } from "../../screens/Settings/Settings";
 import { Login } from "../../screens/Login/Login";
 import { Register } from "../../screens/Register/Register";
 import { AnimedleScreen } from "../../screens/Animedle/AnimedleScreen";
 import { ProfileScreen } from "../../screens/Profile/ProfileScreen";
 import { Ranking } from "../../screens/Ranking/Ranking";
 import { History } from "../../screens/History/History";
+import { SettingsScreen } from "../../screens/Settings/SettingsScreen";
 
 export type TabList = {
     Animedle: undefined;
@@ -65,7 +65,7 @@ const loginTabArr: NavTab[] = [
         name: 'Settings',
         label: 'Settings',
         icon: (color: string) => <MaterialIcons name="settings" size={26} color={color} />,
-        component: Settings,
+        component: SettingsScreen,
         tabBarColor: '#857A9B',
     },
 ];
