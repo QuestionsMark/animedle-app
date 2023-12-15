@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { AccountDeleteState } from "../../validation/account-delete.validation";
 import { usePromises } from "../../contexts/promises.context";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
@@ -16,7 +16,9 @@ export const AccountDeleteForm = () => {
     const { endLoading, setToast, startLoading } = usePromises();
     const { setUser } = useUser();
 
-    const handleSubmit = async (values: AccountDeleteState) => {
+    const handleSubmit = async (values: AccountDeleteState, { resetForm }: FormikHelpers<{ password: string; }>) => {
+        resetForm();
+        if (!values.password) return;
         startLoading();
         const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'DELETE', values));
         setTimeout(async () => {

@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { PRIMARY_COLOR, settingsStyles } from "../../styles";
+import { WARN_COLOR_DARK, settingsStyles } from "../../styles";
 import { FormikProps } from "formik";
 import { PasswordInput } from "../../components/common/PasswordInput";
 import { Button } from "../../components/common/Button";
@@ -21,7 +21,7 @@ export const AccountDeleteFormContent = ({ formikProps }: Props) => {
             />
             <Button
                 onPress={() => formikProps.handleSubmit()}
-                buttonColor={PRIMARY_COLOR}
+                buttonColor={WARN_COLOR_DARK}
                 style={settingsStyles.accountDeleteFormSubmit}
             >
                 Delete Account
