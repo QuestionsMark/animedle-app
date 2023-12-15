@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import axios, { Canceler, AxiosError } from 'axios';
 import { usePromises } from '../contexts/promises.context';
-import { getAuthenticationHeaders } from '../utils/api.util';
-import { HOST_ADDRESS } from '../../config/config';
+import { HOST_ADDRESS, getAuthenticationHeaders } from '../utils/api.util';
 
 export interface SearchResult<T> {
     data: T[];

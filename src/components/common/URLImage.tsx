@@ -1,5 +1,5 @@
 import { Image, ImageStyle } from "react-native";
-import { HOST_ADDRESS } from "../../../config/config";
+import { HOST_ADDRESS } from "../../utils/api.util";
 
 interface Props {
     id: string;

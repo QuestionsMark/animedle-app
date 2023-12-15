@@ -1,8 +1,9 @@
 import * as SecureStore from 'expo-secure-store';
 import { ClientResponse, ClientResponseError, Method, Auth, ServerErrorResponse } from '../types';
 
-import { HOST_ADDRESS } from '../../config/config';
 import { Dispatch, SetStateAction } from 'react';
+
+export const HOST_ADDRESS = 'http://192.168.1.11:3001';
 
 const setErrorResponse = (response: Response, res: ServerErrorResponse): ClientResponseError => {
     console.warn(res.message);
