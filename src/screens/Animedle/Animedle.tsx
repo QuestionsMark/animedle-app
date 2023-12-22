@@ -10,6 +10,7 @@ import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { Animedle as AnimedleNamesapce } from "../../types";
 import { usePromises } from "../../contexts/promises.context";
 import { AdBanner } from "../../components/common/AdBanner";
+import { PopupProvider } from "../../contexts/popup.context";
 
 export const Animedle = () => {
     const { setToast } = usePromises();
@@ -32,25 +33,27 @@ export const Animedle = () => {
     };
 
     return (
-        <View style={animedleStyles.container}>
-            <ScreenHeader title="Animedle" />
-            <View style={animedleStyles.content}>
-                <ScrollView
-                    style={animedleStyles.content}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={refreshing}
-                            onRefresh={handleRefresh}
-                        />
-                    }
-                    contentContainerStyle={animedleStyles.scrollContent}
-                >
-                    <GuesForm />
-                    <FreeHint />
-                    {gueses.length !== 0 && <GuesContent />}
-                    <AdBanner />
-                </ScrollView>
+        <PopupProvider>
+            <View style={animedleStyles.container}>
+                <ScreenHeader title="Animedle" />
+                <View style={animedleStyles.content}>
+                    <ScrollView
+                        style={animedleStyles.content}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={handleRefresh}
+                            />
+                        }
+                        contentContainerStyle={animedleStyles.scrollContent}
+                    >
+                        <GuesForm />
+                        <FreeHint />
+                        {gueses.length !== 0 && <GuesContent />}
+                        <AdBanner />
+                    </ScrollView>
+                </View>
             </View>
-        </View>
+        </PopupProvider>
     );
 };
