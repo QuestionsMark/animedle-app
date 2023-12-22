@@ -1,20 +1,20 @@
 import { Text, View } from "react-native";
-import { User } from "../../types";
 import { Title } from "../../components/common/Title";
 import { URLImage } from "../../components/common/URLImage";
 import { rankingStyles } from "../../styles";
+import { AdBanner } from "../../components/common/AdBanner";
+import { User } from "../../types";
 
 interface Props {
-    index: number;
     item: User.RankingItem;
 }
 
-export const RankingItem = ({ index, item }: Props) => {
-    const { avatar, bestWinStreak, points, username } = item;
+export const RankingItem = ({ item }: Props) => {
+    const { avatar, bestWinStreak, points, username, ad, top } = item;
 
-    return (
+    return ad ? <AdBanner /> : (
         <View style={rankingStyles.item}>
-            <Title title={String(index + 1)} />
+            <Title title={String(top || '-')} />
             <View style={rankingStyles.itemInfo}>
                 <URLImage id={avatar} style={rankingStyles.itemImg} />
                 <Text style={rankingStyles.itemUsername}>

@@ -7,7 +7,7 @@ import { useSearch } from "../../hooks/useSearch";
 import { RankingList } from "./RankingList";
 import { useEffect, useState } from "react";
 
-const limit = 15;
+const limit = 20;
 
 export const Ranking = () => {
     const [refreshing, setRefreshing] = useState(false);
@@ -17,7 +17,6 @@ export const Ranking = () => {
         if (refreshing && !loading) {
             setRefreshing(false);
         };
-
     }, [loading, refreshing]);
 
     return (

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { Animedle as AnimedleNamesapce } from "../../types";
 import { usePromises } from "../../contexts/promises.context";
+import { AdBanner } from "../../components/common/AdBanner";
 
 export const Animedle = () => {
     const { setToast } = usePromises();
@@ -47,6 +48,7 @@ export const Animedle = () => {
                     <GuesForm />
                     <FreeHint />
                     {gueses.length !== 0 && <GuesContent />}
+                    <AdBanner />
                 </ScrollView>
             </View>
         </View>

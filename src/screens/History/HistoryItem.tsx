@@ -2,20 +2,21 @@ import { Text, View, TextStyle } from "react-native";
 import { historyStyles } from "../../styles";
 import { Animedle } from "../../types";
 import { FormattedDate } from "react-intl";
+import { AdBanner } from "../../components/common/AdBanner";
 
 interface Props {
     item: Animedle.Item;
 }
 
 export const HistoryItem = ({ item }: Props) => {
-    const { solved, title, tries, withHint, createdAt } = item;
+    const { solved, title, tries, withHint, createdAt, ad } = item;
 
     const style: TextStyle[] = [historyStyles.itemTitle];
     if (solved) {
         style.push(historyStyles.itemTitleCorrect);
     }
 
-    return (
+    return ad ? <AdBanner /> : (
         <View style={historyStyles.item}>
             <Text style={style}>
                 {title}

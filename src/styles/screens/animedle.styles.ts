@@ -125,6 +125,7 @@ export const animedleStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        minHeight: 60,
     },
     guesContentItemTitleValue: {
         position: 'relative',
@@ -194,5 +195,10 @@ export const animedleStyles = StyleSheet.create({
         color: PRIMARY_COLOR,
         fontSize: 14,
         fontWeight: '600',
+    },
+
+    // Ad
+    animedleAd: {
+        ...componentsStyles.card,
     },
 });

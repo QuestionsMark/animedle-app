@@ -7,7 +7,7 @@ import { lastDataElementRef } from "../../utils/api.util";
 import { Animedle } from "../../types";
 import { useSearch } from "../../hooks/useSearch";
 
-const limit = 15;
+const limit = 20;
 
 export const History = () => {
     const [refreshing, setRefreshing] = useState(false);
@@ -17,7 +17,6 @@ export const History = () => {
         if (refreshing && !loading) {
             setRefreshing(false);
         };
-
     }, [loading, refreshing]);
 
     return (

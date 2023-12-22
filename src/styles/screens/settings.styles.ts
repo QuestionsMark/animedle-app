@@ -8,6 +8,10 @@ export const settingsStyles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 20,
     },
+    wrapper: {
+        flex: 1,
+        gap: 20,
+    },
     contentWrapper: {
         ...componentsStyles.card,
         flex: 1,

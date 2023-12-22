@@ -5,6 +5,7 @@ import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 import { SettingsNav } from "./SettingsNav";
 import { useSettings } from "../../contexts/settings.context";
 import { ScreenHeader } from "../../components/layout/ScreenHeader";
+import { AdBanner } from "../../components/common/AdBanner";
 
 export const Settings = () => {
     const { nav } = useSettings();
@@ -24,9 +25,12 @@ export const Settings = () => {
         <View style={settingsStyles.container}>
             <ScreenHeader title="Settings" />
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={settingsStyles.contentWrapper}>
-                    <SettingsNav />
-                    {getScreen()}
+                <View style={settingsStyles.wrapper}>
+                    <View style={settingsStyles.contentWrapper}>
+                        <SettingsNav />
+                        {getScreen()}
+                    </View>
+                    <AdBanner />
                 </View>
             </TouchableWithoutFeedback>
         </View>

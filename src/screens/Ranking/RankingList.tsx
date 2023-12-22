@@ -14,7 +14,7 @@ export const RankingList = ({ loadMoreData, profiles, refresh, refreshing }: Pro
     return (
         <FlatList
             data={profiles}
-            renderItem={({ index, item }) => <RankingItem index={index} item={item} />}
+            renderItem={({ item }) => <RankingItem item={item} />}
             keyExtractor={({ id }) => id}
             onEndReached={loadMoreData}
             onEndReachedThreshold={0.2}
