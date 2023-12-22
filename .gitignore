@@ -41,3 +41,5 @@ config/config.ts
 
 # Ignore Gradle build output directory
 build
+
+.env

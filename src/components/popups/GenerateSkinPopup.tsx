@@ -1,19 +1,17 @@
 import { Image, Text, View } from "react-native";
 import { SECONDARY_COLOR, profileStyles } from "../../styles";
-import { Profile } from "../../types";
+import { Profile, RewardType, Reward } from "../../types";
 import { Button } from "../common/Button";
 import { Popup } from "../common/Popup";
 import { usePromises } from "../../contexts/promises.context";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
-import { Dispatch, SetStateAction } from "react";
+import { RewardedAdReward } from "react-native-google-mobile-ads";
+import { useRewardedAd } from "../../hooks/useRewardedAd";
+import { useProfile, useProfileInfo } from "../../contexts/profile.context";
 
-interface Props {
-    profileContext: Profile.ContextValue;
-    setProfileContext: Dispatch<SetStateAction<Profile.ContextValue | null>>;
-}
-
-export const GenerateSkinPopup = ({ profileContext, setProfileContext }: Props) => {
-    const { premiumCoins } = profileContext;
+export const GenerateSkinPopup = () => {
+    const { setProfile } = useProfile();
+    const { premiumCoins } = useProfileInfo();
     const { endLoading, setToast, startLoading } = usePromises();
 
     const handleSubmit = async (close: () => void) => {
@@ -22,7 +20,7 @@ export const GenerateSkinPopup = ({ profileContext, setProfileContext }: Props) 
         setTimeout(() => {
             endLoading();
             if (!response.status) return setToast({ type: 'error', text1: 'Fetch failed!', text2: response.message });
-            setProfileContext(response.results);
+            setProfile(response.results);
             close();
         }, delayTime);
     };
@@ -30,6 +28,18 @@ export const GenerateSkinPopup = ({ profileContext, setProfileContext }: Props) 
     const handleCoinsBuy = () => {
         setToast({ type: 'info', text1: 'Info', text2: 'Feature in development.' });
     };
+
+    const onRewardEarn = async (reward: RewardedAdReward) => {
+        const body: Reward = { type: RewardType.Coins, coins: reward.amount };
+        const response = await fetchTool<Profile.ContextValue>('user/reward', 'PATCH', body);
+        if (!response.status) return setToast({ type: 'error', text1: 'Fetch failed!', text2: response.message });
+        setProfile(response.results);
+    };
+
+    const { isLoaded, show } = useRewardedAd({
+        id: 'ca-app-pub-9239996671138242/6065711282',
+        onRewardEarn,
+    });
 
     return (
         <Popup>
@@ -50,14 +60,20 @@ export const GenerateSkinPopup = ({ profileContext, setProfileContext }: Props) 
                     </Button>
                 </Popup.Body>
                 <Popup.Footer>
-                    <Button
+                    {premiumCoins >= 10 ? <Button
                         onPress={() => handleSubmit(close)}
                         style={profileStyles.changeSkinSubmit}
                         buttonColor={SECONDARY_COLOR}
-                        disabled={premiumCoins < 10}
                     >
                         Generate skin
-                    </Button>
+                    </Button> : <Button
+                        onPress={show}
+                        style={profileStyles.changeSkinSubmit}
+                        buttonColor={SECONDARY_COLOR}
+                        disabled={!isLoaded}
+                    >
+                        {`Watch ${premiumCoins + 5 >= 10 ? '1 ad' : '2 ads'} to generate`}
+                    </Button>}
                 </Popup.Footer>
             </>)}
         </Popup>

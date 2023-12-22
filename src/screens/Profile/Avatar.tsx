@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { profileStyles } from "../../styles";
-import { useProfile, useProfileInfo } from "../../contexts/profile.context";
+import { useProfileInfo } from "../../contexts/profile.context";
 import { URLImage } from "../../components/common/URLImage";
 import { IconButton } from "../../components/common/IconButton";
 import { usePopup } from "../../contexts/popup.context";
@@ -9,15 +9,14 @@ import { GenerateSkinPopup } from "../../components/popups/GenerateSkinPopup";
 
 export const Avatar = () => {
     const { open } = usePopup();
-    const { setProfile } = useProfile();
     const profileContext = useProfileInfo();
 
     const handleAvatarGenerate = async () => {
-        open(<GenerateSkinPopup profileContext={profileContext} setProfileContext={setProfile} />);
+        open(<GenerateSkinPopup />);
     };
 
     const handleOpenSkins = () => {
-        open(<ChangeSkinPopup profileContext={profileContext} setProfileContext={setProfile} />);
+        open(<ChangeSkinPopup />);
     };
 
     return (

@@ -4,6 +4,7 @@ import { ClientResponse, ClientResponseError, Method, Auth, ServerErrorResponse 
 import { Dispatch, SetStateAction } from 'react';
 
 export const HOST_ADDRESS = 'http://192.168.1.11:3001';
+// export const HOST_ADDRESS = 'https://animedle-api.animark.pl';
 
 const setErrorResponse = (response: Response, res: ServerErrorResponse): ClientResponseError => {
     console.warn(res.message);

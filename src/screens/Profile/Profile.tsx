@@ -8,6 +8,7 @@ import { usePromises } from "../../contexts/promises.context";
 import { useState } from "react";
 import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { Profile as ProfileNamespace } from "../../types";
+import { PopupProvider } from "../../contexts/popup.context";
 
 export const Profile = () => {
     const { setToast } = usePromises();
@@ -30,22 +31,24 @@ export const Profile = () => {
     };
 
     return (
-        <View style={profileStyles.container}>
-            <ScreenHeader title={username} />
-            <View style={profileStyles.content}>
-                <ScrollView
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={refreshing}
-                            onRefresh={handleRefresh}
-                        />
-                    }
-                    contentContainerStyle={profileStyles.scrollContent}
-                >
-                    <Avatar />
-                    <Stats />
-                </ScrollView>
+        <PopupProvider>
+            <View style={profileStyles.container}>
+                <ScreenHeader title={username} />
+                <View style={profileStyles.content}>
+                    <ScrollView
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={handleRefresh}
+                            />
+                        }
+                        contentContainerStyle={profileStyles.scrollContent}
+                    >
+                        <Avatar />
+                        <Stats />
+                    </ScrollView>
+                </View>
             </View>
-        </View>
+        </PopupProvider>
     );
 };

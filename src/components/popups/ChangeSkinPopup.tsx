@@ -4,20 +4,17 @@ import { Button } from "../common/Button";
 import { Popup } from "../common/Popup";
 import { FlatList } from "react-native";
 import { SkinItem } from "../../screens/Profile/SkinItem";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { usePromises } from "../../contexts/promises.context";
 import { fetchTool, lastDataElementRef, minimalDelayFunction } from "../../utils/api.util";
 import { useSearch } from "../../hooks/useSearch";
-
-interface Props {
-    profileContext: Profile.ContextValue;
-    setProfileContext: Dispatch<SetStateAction<Profile.ContextValue | null>>;
-}
+import { useProfile, useProfileInfo } from "../../contexts/profile.context";
 
 const limit = 24;
 
-export const ChangeSkinPopup = ({ profileContext, setProfileContext }: Props) => {
-    const { avatar } = profileContext;
+export const ChangeSkinPopup = () => {
+    const { setProfile } = useProfile();
+    const { avatar } = useProfileInfo();
     const { endLoading, setToast, startLoading } = usePromises();
 
     const { amount, data, hasMore, loading, page, setPage } = useSearch<string>('user/skins', 24, true);
@@ -33,7 +30,7 @@ export const ChangeSkinPopup = ({ profileContext, setProfileContext }: Props) =>
         setTimeout(() => {
             endLoading();
             if (!response.status) return setToast({ type: 'error', text1: 'Fetch failed!', text2: response.message });
-            setProfileContext(response.results);
+            setProfile(response.results);
             close();
         }, delayTime);
     };
