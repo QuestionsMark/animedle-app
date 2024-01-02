@@ -21,7 +21,10 @@ export const LoginForm = () => {
 
     const handleSubmit = async (values: LoginState) => {
         startLoading();
-        const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', values));
+        const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', {
+            email: values.email.trim(),
+            pasword: values.password.trim(),
+        }));
         setTimeout(async () => {
             Keyboard.dismiss();
             endLoading();

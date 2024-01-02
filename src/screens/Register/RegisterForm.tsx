@@ -21,7 +21,12 @@ export const RegisterForm = () => {
 
     const handleSubmit = async (state: RegisterState) => {
         startLoading();
-        const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'POST', state));
+        const { delayTime, response } = await minimalDelayFunction<string>(() => fetchTool('user', 'POST', {
+            confirmPassword: state.confirmPassword.trim(),
+            email: state.email.trim(),
+            password: state.password.trim(),
+            username: state.username.trim(),
+        }));
         setTimeout(() => {
             Keyboard.dismiss();
             endLoading();
