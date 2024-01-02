@@ -201,4 +201,39 @@ export const animedleStyles = StyleSheet.create({
     animedleAd: {
         ...componentsStyles.card,
     },
+
+    // Review Request
+    reviewRequestBody: {
+        gap: 20,
+    },
+    reviewRequestContent: {
+        ...componentsStyles.card,
+        gap: 10,
+    },
+    reviewRequestText: {
+        color: PRIMARY_COLOR,
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    reviewRequestCoins: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 4,
+        width: '100%',
+    },
+    reviewRequestCoinsImage: {
+        width: 40,
+        height: 40,
+    },
+    reviewRequestCoinsValue: {
+        color: PRIMARY_COLOR,
+        fontSize: 24,
+        fontWeight: '600',
+    },
+    reviewRequestSubmit: {
+        borderRadius: 40,
+        paddingHorizontal: 10,
+        paddingVertical: 1,
+    },
 });

@@ -8,6 +8,10 @@ import { fetchTool, minimalDelayFunction } from "../../utils/api.util";
 import { Animedle } from "../../types";
 import { useAnimedle } from "../../contexts/animedle.context";
 import { useSearch } from "../../hooks/useSearch";
+import { useUserInfo } from "../../contexts/user.context";
+import { usePopup } from "../../contexts/popup.context";
+import { ReviewRequestPopup } from "../../components/popups/ReviewRequestPopup";
+import { useEffect } from "react";
 
 const defaultGuesState: GuesState = {
     title: '',
@@ -15,7 +19,9 @@ const defaultGuesState: GuesState = {
 
 export const GuesForm = () => {
     const { endLoading, setToast, startLoading } = usePromises();
+    const { review } = useUserInfo();
     const { setAnimedle } = useAnimedle();
+    const { open } = usePopup();
 
     const { data, handleSearchPhraseChange, reset } = useSearch<string>('animedle/suggestions', 5);
 
@@ -43,9 +49,16 @@ export const GuesForm = () => {
                 }, delayTime);
                 return;
             };
+            if (review === null && response.results.gueses[response.results.gueses.length - 1].isCorrect) {
+                open(<ReviewRequestPopup />);
+            }
             setAnimedle(response.results);
         }, delayTime);
     };
+
+    useEffect(() => {
+        open(<ReviewRequestPopup />);
+    }, []);
 
     return (
         <View style={animedleStyles.guesForm}>
