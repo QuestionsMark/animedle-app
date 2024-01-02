@@ -3,9 +3,6 @@ import { ClientResponse, ClientResponseError, Method, Auth, ServerErrorResponse 
 
 import { Dispatch, SetStateAction } from 'react';
 
-export const HOST_ADDRESS = 'http://192.168.1.11:3001';
-// export const HOST_ADDRESS = 'https://animedle-api.animark.pl';
-
 const setErrorResponse = (response: Response, res: ServerErrorResponse): ClientResponseError => {
     console.warn(res.message);
     if (response.status === 400) return { message: res.message, status: false, problems: res.problems };
@@ -39,7 +36,7 @@ export async function fetchTool<T>(path: string, method: Method = 'GET', body: a
             };
         }
 
-        const response = await fetch(`${HOST_ADDRESS}/${path[0] === '/' ? path.slice(1) : path}`, {
+        const response = await fetch(`${process.env.EXPO_PUBLIC_HOST_ADDRESS}/${path[0] === '/' ? path.slice(1) : path}`, {
             method,
             headers: headers,
             body: body && JSON.stringify(body),
@@ -55,7 +52,7 @@ export async function fetchTool<T>(path: string, method: Method = 'GET', body: a
 
 export async function fetchWithFileUpload<T>(path: string, method: Method = 'POST', body: FormData): Promise<ClientResponse<T>> {
     try {
-        const response = await fetch(`${HOST_ADDRESS}/${path[0] === '/' ? path.slice(1) : path}`, {
+        const response = await fetch(`${process.env.EXPO_PUBLIC_HOST_ADDRESS}/${path[0] === '/' ? path.slice(1) : path}`, {
             method,
             headers: await getAuthenticationHeaders(),
             body,

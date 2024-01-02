@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import axios, { Canceler, AxiosError } from 'axios';
 import { usePromises } from '../contexts/promises.context';
-import { HOST_ADDRESS, getAuthenticationHeaders } from '../utils/api.util';
+import { getAuthenticationHeaders } from '../utils/api.util';
 
 export interface SearchResult<T> {
     data: T[];
@@ -75,7 +75,7 @@ export function useSearch<T>(
             const headers = await getAuthenticationHeaders();
             axios({
                 method: 'GET',
-                url: `${HOST_ADDRESS}/${collection}`,
+                url: `${process.env.EXPO_PUBLIC_HOST_ADDRESS}/${collection}`,
                 params: {
                     search: search,
                     page,
