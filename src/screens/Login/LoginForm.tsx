@@ -23,7 +23,7 @@ export const LoginForm = () => {
         startLoading();
         const { delayTime, response } = await minimalDelayFunction<Auth.Response>(() => fetchTool('auth/login', 'POST', {
             email: values.email.trim(),
-            pasword: values.password.trim(),
+            password: values.password.trim(),
         }));
         setTimeout(async () => {
             Keyboard.dismiss();
